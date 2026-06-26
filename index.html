@@ -1,0 +1,1909 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>@tatarka_visual · Услуги</title>
+<style>
+@font-face { font-family: 'ActayWide'; src: url('https://raw.githubusercontent.com/Gulnaz1911/tatarka-calculator/main/ActayWide-Bold.otf'); font-weight: 700; }
+@font-face { font-family: 'Actay'; src: url('https://raw.githubusercontent.com/Gulnaz1911/tatarka-calculator/main/Actay-Regular.otf'); font-weight: 400; }
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: 'Actay', 'Inter', sans-serif; background: #FFFFFF; color: #232627; min-height: 100vh; }
+
+/* ── ХЕДЕР ── */
+.hdr { display: flex; align-items: center; justify-content: space-between; padding: 16px 20px; border-bottom: 1px solid #ADAF8A; background: #fff; }
+.hdr-logo { display: flex; align-items: center; gap: 10px; }
+.hdr-diamond { width: 26px; height: 26px; background: #232627; transform: rotate(45deg); border-radius: 2px; flex-shrink: 0; }
+.hdr-brand { font-family: 'ActayWide', sans-serif; font-size: 11px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; }
+.hdr-handle { font-size: 10px; color: #ADAF8A; letter-spacing: 0.08em; margin-top: 2px; }
+.hdr-back { font-size: 11px; color: #5A5F0A; letter-spacing: 0.06em; cursor: pointer; text-decoration: none; display: flex; align-items: center; gap: 6px; }
+.hdr-back:hover { color: #232627; }
+
+/* ── ШАХМАТКА ── */
+.chess-strip { display: flex; width: 100%; overflow: hidden; }
+.chess-strip.sm { height: 12px; }
+.chess-strip.lg { height: 18px; }
+
+/* ── ГЛАВНЫЙ HERO (тёмный) ── */
+.main-hero { background: #232627; }
+.main-hero-content { padding: 28px 20px 28px; }
+.main-hero .section-label { font-size: 10px; letter-spacing: 0.14em; color: #ADAF8A; text-transform: uppercase; margin-bottom: 12px; }
+.main-hero h1 { font-family: 'ActayWide', sans-serif; font-size: 24px; font-weight: 700; letter-spacing: 0.04em; text-transform: uppercase; color: #FFFFFF; line-height: 1.2; margin-bottom: 10px; }
+.main-hero p { font-size: 13px; color: #ADAF8A; line-height: 1.6; }
+
+/* ── HERO УСЛУГИ (тёмный) ── */
+.service-hero { background: #232627; }
+.service-hero-content { padding: 20px 20px 20px; }
+.service-hero .section-label { font-size: 10px; letter-spacing: 0.14em; color: #ADAF8A; text-transform: uppercase; margin-bottom: 8px; }
+.service-hero h1 { font-family: 'ActayWide', sans-serif; font-size: 20px; font-weight: 700; letter-spacing: 0.04em; text-transform: uppercase; color: #FFFFFF; line-height: 1.2; margin-bottom: 6px; }
+.service-hero p { font-size: 12px; color: #ADAF8A; line-height: 1.5; }
+
+/* ── КАРТОЧКИ ГЛАВНОГО ЭКРАНА ── */
+.main-cards { padding: 20px 20px 0; }
+.main-cards-label { font-size: 10px; letter-spacing: 0.14em; color: #5A5F0A; text-transform: uppercase; margin-bottom: 14px; }
+.svc-card { border: 1px solid #ADAF8A; margin-bottom: 8px; cursor: pointer; position: relative; overflow: hidden; transition: background 0.15s; }
+.svc-card:hover { background: #FEF7ED; }
+.svc-card .svc-accent { position: absolute; left: 0; top: 0; bottom: 0; width: 3px; background: #ADAF8A; }
+.svc-card.featured { background: #FEF7ED; }
+.svc-card.featured .svc-accent { background: #5A5F0A; }
+.svc-card.featured .svc-num { color: #5A5F0A; }
+.svc-card.dark-card { background: #232627; border-color: #232627; }
+.svc-card.dark-card .svc-title { color: #FFF; }
+.svc-card.dark-card .svc-desc { color: #ADAF8A; }
+.svc-card.dark-card .svc-accent { background: #5A5F0A; }
+.svc-card.dark-card .svc-arrow { color: #5A5F0A; }
+.svc-card.dark-card .svc-num { color: #ADAF8A; }
+.svc-card.dashed { border-style: dashed; }
+.svc-inner { padding: 16px 16px 16px 20px; display: flex; align-items: center; justify-content: space-between; gap: 12px; }
+.svc-left { flex: 1; }
+.svc-num { font-size: 10px; color: #ADAF8A; letter-spacing: 0.12em; margin-bottom: 5px; }
+.svc-title { font-family: 'ActayWide', sans-serif; font-size: 11px; font-weight: 700; letter-spacing: 0.05em; text-transform: uppercase; color: #232627; line-height: 1.35; margin-bottom: 4px; }
+.svc-desc { font-size: 11px; color: #888; line-height: 1.45; }
+.svc-arrow { font-size: 18px; color: #ADAF8A; flex-shrink: 0; }
+
+/* ── СКИДКИ ── */
+.discount-block { margin: 20px 20px 0; background: #5A5F0A; padding: 14px 16px; }
+.discount-title { font-family: 'ActayWide', sans-serif; font-size: 9px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: #ADAF8A; margin-bottom: 10px; }
+.discount-pill { display: inline-block; background: rgba(255,255,255,0.1); padding: 5px 10px; font-size: 11px; color: #FFF; margin-right: 6px; margin-bottom: 6px; }
+.discount-pill span { color: #ADAF8A; font-weight: 500; }
+.footer-line { padding: 16px 20px 24px; display: flex; align-items: center; justify-content: space-between; border-top: 1px solid #ADAF8A; margin-top: 20px; }
+.footer-txt { font-size: 10px; color: #ADAF8A; letter-spacing: 0.06em; }
+
+/* ── СЕКЦИИ ВНУТРИ УСЛУГ ── */
+.section-wrap { padding: 0 20px; }
+.section-label { font-size: 10px; letter-spacing: 0.14em; color: #5A5F0A; text-transform: uppercase; font-weight: 500; margin-bottom: 8px; }
+
+/* ── STEP INDICATOR ── */
+.steps-bar { display: flex; align-items: center; padding: 16px 20px; }
+.step-item { display: flex; align-items: center; gap: 8px; }
+.step-num { width: 24px; height: 24px; border-radius: 50%; border: 1px solid #ADAF8A; display: flex; align-items: center; justify-content: center; font-size: 10px; color: #ADAF8A; flex-shrink: 0; transition: all 0.2s; }
+.step-num.active { background: #5A5F0A; border-color: #5A5F0A; color: #FFF; }
+.step-num.done { background: #ADAF8A; border-color: #ADAF8A; color: #FFF; }
+.step-label { font-size: 11px; color: #888; }
+.step-label.active { color: #232627; font-weight: 500; }
+.step-line { flex: 1; height: 1px; background: #ADAF8A; margin: 0 10px; opacity: 0.4; }
+
+/* ── ПЛАТФОРМЫ ── */
+.platform-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1px; background: #ADAF8A; border: 1px solid #ADAF8A; margin-bottom: 20px; }
+.plat-card { background: #FFF; padding: 16px 14px; cursor: pointer; transition: background 0.15s; position: relative; }
+.plat-card:hover { background: #FEF7ED; }
+.plat-card.selected { background: #232627; }
+.plat-card.selected .plat-name { color: #FFF; }
+.plat-card.selected .plat-hint { color: #ADAF8A; }
+.plat-card.selected::after { content: '✓'; position: absolute; top: 10px; right: 10px; font-size: 11px; color: #ADAF8A; }
+.plat-icon { font-size: 18px; margin-bottom: 6px; }
+.plat-name { font-family: 'ActayWide', sans-serif; font-size: 10px; font-weight: 700; letter-spacing: 0.05em; text-transform: uppercase; color: #232627; margin-bottom: 3px; }
+.plat-hint { font-size: 10px; color: #888; line-height: 1.4; }
+
+/* ── АККОРДЕОНЫ ── */
+.acc-block { border: 1px solid #ADAF8A; margin-bottom: 10px; overflow: hidden; position: relative; }
+.acc-block .acc-bar { position: absolute; left: 0; top: 0; bottom: 0; width: 3px; background: #ADAF8A; }
+.acc-block.acc-open .acc-bar { background: #5A5F0A; }
+.acc-header { display: flex; align-items: center; justify-content: space-between; padding: 13px 16px 13px 20px; cursor: pointer; background: #FFF; transition: background 0.15s; }
+.acc-header:hover { background: #FEF7ED; }
+.acc-block.acc-open .acc-header { background: #FEF7ED; }
+.acc-left { display: flex; align-items: center; gap: 10px; }
+.acc-num { font-size: 10px; color: #ADAF8A; letter-spacing: 0.1em; }
+.acc-block.acc-open .acc-num { color: #5A5F0A; }
+.acc-title { font-family: 'ActayWide', sans-serif; font-size: 10px; font-weight: 700; letter-spacing: 0.05em; text-transform: uppercase; }
+.acc-right { display: flex; align-items: center; gap: 10px; }
+.acc-subtotal { font-size: 11px; color: #5A5F0A; font-weight: 500; }
+.acc-arrow { font-size: 14px; color: #ADAF8A; transition: transform 0.2s; }
+.acc-arrow.open { transform: rotate(90deg); }
+.acc-body { padding: 0 16px 14px 20px; display: none; border-top: 1px solid #f0ede4; }
+.acc-body.open { display: block; }
+
+/* ── ЭЛЕМЕНТЫ ФОРМЫ ── */
+.toggle-row { display: flex; align-items: flex-start; justify-content: space-between; gap: 12px; padding: 10px 0; border-bottom: 1px solid #f0ede4; }
+.toggle-row:last-child { border-bottom: none; }
+.toggle-left { flex: 1; }
+.toggle-name { font-size: 13px; color: #232627; margin-bottom: 2px; }
+.toggle-desc { font-size: 11px; color: #888; }
+.toggle-right { display: flex; align-items: center; gap: 10px; flex-shrink: 0; }
+.toggle-price { font-size: 12px; color: #5A5F0A; font-weight: 500; white-space: nowrap; }
+
+.tv-toggle { position: relative; width: 36px; height: 20px; cursor: pointer; }
+.tv-toggle input { opacity: 0; width: 0; height: 0; position: absolute; }
+.tv-slider { position: absolute; inset: 0; background: #E0E0E0; border-radius: 20px; transition: background 0.2s; }
+.tv-slider::before { content: ''; position: absolute; width: 14px; height: 14px; left: 3px; top: 3px; background: #FFF; border-radius: 50%; transition: transform 0.2s; }
+.tv-toggle input:checked + .tv-slider { background: #5A5F0A; }
+.tv-toggle input:checked + .tv-slider::before { transform: translateX(16px); }
+
+.counter { display: flex; align-items: center; gap: 8px; }
+.counter-btn { width: 26px; height: 26px; border: 1px solid #ADAF8A; background: none; cursor: pointer; font-size: 14px; color: #5A5F0A; display: flex; align-items: center; justify-content: center; }
+.counter-btn:hover { background: #FEF7ED; }
+.counter-val { font-size: 13px; font-weight: 500; min-width: 20px; text-align: center; }
+
+.radio-group { display: flex; flex-direction: column; gap: 6px; }
+.radio-opt { display: flex; align-items: center; gap: 10px; padding: 10px 12px; border: 1px solid #E8E8E8; cursor: pointer; transition: border-color 0.15s; }
+.radio-opt:hover { border-color: #ADAF8A; }
+.radio-opt.selected { border-color: #5A5F0A; background: #FEF7ED; }
+.radio-opt input { accent-color: #5A5F0A; }
+.radio-opt-label { font-size: 13px; flex: 1; }
+.radio-opt-price { font-size: 11px; color: #5A5F0A; font-weight: 500; white-space: nowrap; }
+
+/* ── БЛОКИ КОНТАКТ/ИТОГ ── */
+.base-block { border: 1px solid #ADAF8A; margin-bottom: 16px; overflow: hidden; }
+.base-header { background: #FEF7ED; padding: 12px 16px; display: flex; align-items: center; justify-content: space-between; border-bottom: 1px solid #ADAF8A; }
+.base-title { font-family: 'ActayWide', sans-serif; font-size: 10px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; color: #232627; }
+.base-body { padding: 14px 16px; display: flex; flex-direction: column; gap: 10px; }
+
+/* ── НИЖНЯЯ ПАНЕЛЬ ── */
+.bottom-bar { position: sticky; bottom: 0; background: #232627; padding: 14px 20px; display: flex; align-items: center; justify-content: space-between; border-top: 2px solid #5A5F0A; z-index: 100; }
+.bar-info { display: flex; flex-direction: column; gap: 2px; }
+.bar-label { font-size: 10px; color: #ADAF8A; letter-spacing: 0.08em; text-transform: uppercase; }
+.bar-total { font-family: 'ActayWide', sans-serif; font-size: 20px; font-weight: 700; color: #FFF; letter-spacing: 0.04em; }
+.bar-discount { font-size: 10px; color: #ADAF8A; }
+.bar-btn { background: #5A5F0A; color: #FFF; border: none; padding: 11px 22px; font-family: 'ActayWide', sans-serif; font-size: 10px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; cursor: pointer; }
+.bar-btn:hover { background: #4a4e08; }
+
+/* ── КНОПКИ НАВИГАЦИИ ── */
+.nav-btns { display: flex; gap: 10px; padding: 20px 20px 0; }
+.btn-next { background: #5A5F0A; color: #FFF; border: none; padding: 12px 24px; font-family: 'ActayWide', sans-serif; font-size: 10px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; cursor: pointer; }
+.btn-next:hover { background: #4a4e08; }
+.btn-next:disabled { background: #ccc; cursor: default; }
+.btn-back-nav { background: none; color: #232627; border: 1px solid #ADAF8A; padding: 12px 18px; font-family: 'ActayWide', sans-serif; font-size: 10px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; cursor: pointer; }
+.btn-back-nav:hover { background: #FEF7ED; }
+
+/* ── УСПЕХ ── */
+.success-block { padding: 60px 20px; text-align: center; }
+.success-icon { font-size: 40px; margin-bottom: 16px; }
+.success-h { font-family: 'ActayWide', sans-serif; font-size: 16px; font-weight: 700; letter-spacing: 0.04em; text-transform: uppercase; margin-bottom: 8px; }
+.success-p { font-size: 13px; color: #888; line-height: 1.7; }
+
+/* ── ЭКРАНЫ ── */
+.screen { display: none; }
+.screen.active { display: block; }
+.step-screen { display: none; }
+.step-screen.active { display: block; }
+</style>
+</head>
+<body>
+
+<header class="hdr">
+  <div class="hdr-logo">
+    <div class="hdr-diamond"></div>
+    <div>
+      <div class="hdr-brand">Tatarka Visual</div>
+      <div class="hdr-handle">@tatarka_visual</div>
+    </div>
+  </div>
+  <a class="hdr-back" id="hdr-back" href="#" onclick="goBack()" style="display:none;">← Назад</a>
+</header>
+
+<!-- ========== ГЛАВНЫЙ ЭКРАН ========== -->
+<div class="screen active" id="screen-main">
+  <div class="main-hero">
+    <div class="chess-strip lg" id="chess-main-top"></div>
+    <div class="main-hero-content">
+      <div class="section-label">// tatarka_visual</div>
+      <h1>Чем вам помочь?</h1>
+      <p>Выберите направление — подберу состав и рассчитаю стоимость</p>
+    </div>
+    <div class="chess-strip lg" id="chess-main-bot"></div>
+  </div>
+
+  <div class="main-cards">
+    <div class="main-cards-label">// услуги</div>
+    <div class="svc-card featured" onclick="openService('social')">
+      <div class="svc-accent"></div>
+      <div class="svc-inner"><div class="svc-left"><div class="svc-num">// 01</div><div class="svc-title">Визуальная упаковка соцсетей</div><div class="svc-desc">Telegram · Instagram · ВКонтакте · WhatsApp</div></div><div class="svc-arrow">→</div></div>
+    </div>
+    <div class="svc-card" onclick="openService('logo')">
+      <div class="svc-accent"></div>
+      <div class="svc-inner"><div class="svc-left"><div class="svc-num">// 02</div><div class="svc-title">Логотип и аватарка</div><div class="svc-desc">Нейроаватарка · новый логотип · адаптация</div></div><div class="svc-arrow">→</div></div>
+    </div>
+    <div class="svc-card" onclick="openService('materials')">
+      <div class="svc-accent"></div>
+      <div class="svc-inner"><div class="svc-left"><div class="svc-num">// 03</div><div class="svc-title">Бизнес-материалы</div><div class="svc-desc">Гайды · презентации · лид-магниты · КП</div></div><div class="svc-arrow">→</div></div>
+    </div>
+    <div class="svc-card" onclick="openService('web')">
+      <div class="svc-accent"></div>
+      <div class="svc-inner"><div class="svc-left"><div class="svc-num">// 04</div><div class="svc-title">Веб-дизайн</div><div class="svc-desc">Лендинги и сайты на вайбкодинге</div></div><div class="svc-arrow">→</div></div>
+    </div>
+    <div class="svc-card" onclick="openService('auto')">
+      <div class="svc-accent"></div>
+      <div class="svc-inner"><div class="svc-left"><div class="svc-num">// 05</div><div class="svc-title">Автоматизация</div><div class="svc-desc">GPT-агент · мини-апп · интерактивные материалы</div></div><div class="svc-arrow">→</div></div>
+    </div>
+    <div class="svc-card dark-card" style="margin-top:14px;" onclick="openService('retainer')">
+      <div class="svc-accent"></div>
+      <div class="svc-inner"><div class="svc-left"><div class="svc-num">// +</div><div class="svc-title">Постоянное сотрудничество</div><div class="svc-desc">Ежемесячное ведение визуала проекта</div></div><div class="svc-arrow">→</div></div>
+    </div>
+    <div class="svc-card dashed" onclick="openService('custom')">
+      <div class="svc-inner"><div class="svc-left"><div class="svc-num">// ?</div><div class="svc-title">Своя задача</div><div class="svc-desc">Опишите — обсудим и рассчитаем</div></div><div class="svc-arrow">→</div></div>
+    </div>
+  </div>
+
+  <div class="discount-block">
+    <div class="discount-title">Скидки при нескольких услугах</div>
+    <div class="discount-pill">2 услуги <span>−10%</span></div>
+    <div class="discount-pill">3 и более <span>−15%</span></div>
+    <div class="discount-pill">срочно <span>+30%</span></div>
+  </div>
+
+  <div class="footer-line">
+    <div class="footer-txt">@tatarka_visual · 2026</div>
+    <div class="footer-txt">Оплата 50/50 · ава 100%</div>
+  </div>
+</div>
+
+<!-- ========== УСЛУГА: СОЦСЕТИ ========== -->
+<div class="screen" id="screen-social">
+  <div class="service-hero">
+    <div class="chess-strip sm" id="chess-s1"></div>
+    <div class="service-hero-content">
+      <div class="section-label">// 01 · услуга</div>
+      <h1>Визуальная упаковка соцсетей</h1>
+      <p>Выберите платформу — подберу состав и рассчитаю стоимость</p>
+    </div>
+    <div class="chess-strip sm" id="chess-s2"></div>
+  </div>
+
+  <div class="steps-bar">
+    <div class="step-item"><div class="step-num active" id="snum-1">1</div><div class="step-label active" id="slbl-1">Платформа</div></div>
+    <div class="step-line"></div>
+    <div class="step-item"><div class="step-num" id="snum-2">2</div><div class="step-label" id="slbl-2">Состав</div></div>
+    <div class="step-line"></div>
+    <div class="step-item"><div class="step-num" id="snum-3">3</div><div class="step-label" id="slbl-3">Контакт</div></div>
+  </div>
+
+  <!-- Step 1 -->
+  <div id="step-1" class="step-screen active">
+    <div class="section-wrap" style="padding:16px 20px 0;">
+      <div class="section-label" style="margin-bottom:14px;">Выберите одну или несколько платформ</div>
+      <div class="platform-grid">
+        <div class="plat-card" data-plat="tg" onclick="togglePlat(this)"><div class="plat-icon">✈️</div><div class="plat-name">Telegram</div><div class="plat-hint">Канал или группа</div></div>
+        <div class="plat-card" data-plat="max" onclick="togglePlat(this)"><div class="plat-icon">▶️</div><div class="plat-name">MAX</div><div class="plat-hint">Канал или сообщество</div></div>
+        <div class="plat-card" data-plat="ig" onclick="togglePlat(this)"><div class="plat-icon">📷</div><div class="plat-name">Instagram</div><div class="plat-hint">Профиль, посты, сторис</div></div>
+        <div class="plat-card" data-plat="vk" onclick="togglePlat(this)"><div class="plat-icon">💙</div><div class="plat-name">ВКонтакте</div><div class="plat-hint">Группа или сообщество</div></div>
+        <div class="plat-card" data-plat="wa" onclick="togglePlat(this)"><div class="plat-icon">💬</div><div class="plat-name">WhatsApp Business</div><div class="plat-hint">Бизнес-профиль</div></div>
+        <div class="plat-card" data-plat="other" onclick="togglePlat(this)"><div class="plat-icon">＋</div><div class="plat-name">Другое</div><div class="plat-hint">Опишу в комментарии</div></div>
+      </div>
+    </div>
+    <div class="nav-btns">
+      <button class="btn-back-nav" onclick="openService('main')">← На главную</button>
+      <button class="btn-next" id="btn-to-2" onclick="goStep(2)" disabled>Выбрать состав →</button>
+    </div>
+    <div style="height:32px;"></div>
+  </div>
+
+  <!-- Step 2 -->
+  <div id="step-2" class="step-screen" style="display:none;">
+    <div class="section-wrap" style="padding:16px 20px 0;" id="composition-area"></div>
+    <div class="nav-btns">
+      <button class="btn-back-nav" onclick="goStep(1)">← Назад</button>
+      <button class="btn-next" onclick="goStep(3)">Оформить заявку →</button>
+    </div>
+    <div style="height:100px;"></div>
+  </div>
+
+  <!-- Step 3 -->
+  <div id="step-3" class="step-screen" style="display:none;">
+    <div class="section-wrap" style="padding:16px 20px 0;">
+      <div class="section-label" style="margin-bottom:20px;">Как с вами связаться?</div>
+      <div class="base-block">
+        <div class="base-header"><div class="base-title">Контактные данные</div></div>
+        <div class="base-body" style="gap:14px;">
+          <div class="toggle-row" style="padding:6px 0;border:none;">
+            <div class="toggle-left"><div class="toggle-name">Ваше имя</div></div>
+            <div class="toggle-right"><input type="text" id="c-name" placeholder="Как вас зовут" style="border:1px solid #ADAF8A;padding:8px 12px;font-size:13px;width:220px;outline:none;font-family:inherit;"></div>
+          </div>
+          <div class="toggle-row" style="padding:6px 0;border:none;">
+            <div class="toggle-left"><div class="toggle-name">Telegram или WhatsApp</div><div class="toggle-desc">Куда написать</div></div>
+            <div class="toggle-right"><input type="text" id="c-contact" placeholder="@username или +7..." style="border:1px solid #ADAF8A;padding:8px 12px;font-size:13px;width:220px;outline:none;font-family:inherit;"></div>
+          </div>
+          <div class="toggle-row" style="padding:6px 0;border:none;">
+            <div class="toggle-left"><div class="toggle-name">Ссылка на аккаунт</div><div class="toggle-desc">Посмотрю до начала работы</div></div>
+            <div class="toggle-right"><input type="text" id="c-link" placeholder="t.me/... или instagram.com/..." style="border:1px solid #ADAF8A;padding:8px 12px;font-size:13px;width:220px;outline:none;font-family:inherit;"></div>
+          </div>
+          <div class="toggle-row" style="padding:6px 0;border:none;flex-direction:column;align-items:flex-start;gap:8px;">
+            <div class="toggle-name">Комментарий</div>
+            <textarea id="c-comment" placeholder="Пожелания, вопросы, детали..." rows="3" style="width:100%;border:1px solid #ADAF8A;padding:10px 12px;font-size:13px;outline:none;font-family:inherit;resize:vertical;"></textarea>
+          </div>
+          <div class="toggle-row" style="padding:6px 0;border:none;">
+            <div class="toggle-left"><div class="toggle-name">Срочно?</div><div class="toggle-desc">В 2 раза быстрее стандартного срока (+30%)</div></div>
+            <div class="toggle-right">
+              <div class="toggle-price" id="urgent-price-label"></div>
+              <label class="tv-toggle"><input type="checkbox" id="urgent-toggle" onchange="calcTotal()"><span class="tv-slider"></span></label>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="base-block" style="background:#FEF7ED;">
+        <div class="base-header" style="background:#FEF7ED;"><div class="base-title">Итог заказа</div></div>
+        <div class="base-body" id="summary-lines" style="gap:8px;"></div>
+      </div>
+    </div>
+    <div class="nav-btns">
+      <button class="btn-back-nav" onclick="goStep(2)">← Назад</button>
+      <button class="btn-next" onclick="sendOrder()">Отправить заявку →</button>
+    </div>
+    <div style="height:32px;"></div>
+  </div>
+
+  <!-- Success -->
+  <div id="step-success" class="step-screen" style="display:none;">
+    <div class="success-block">
+      <div class="success-icon">✦</div>
+      <div class="success-h">Заявка отправлена</div>
+      <p class="success-p">Я получила ваш запрос и свяжусь с вами в ближайшее время.<br>Обычно отвечаю в течение нескольких часов.</p>
+      <p style="margin-top:16px;font-size:12px;color:#ADAF8A;">@tatarka_visual</p>
+      <button class="btn-next" style="margin-top:24px;" onclick="openService('main')">← На главную</button>
+    </div>
+  </div>
+</div>
+
+<!-- ========== ЗАГЛУШКИ ДЛЯ ОСТАЛЬНЫХ УСЛУГ ========== -->
+<div class="screen" id="screen-logo">
+  <div class="service-hero">
+    <div class="chess-strip sm" id="chess-l1"></div>
+    <div class="service-hero-content">
+      <div class="section-label">// 02 · услуга</div>
+      <h1>Логотип и аватарка</h1>
+      <p>Выберите что нужно — рассчитаем стоимость</p>
+    </div>
+    <div class="chess-strip sm" id="chess-l2"></div>
+  </div>
+
+  <div class="section-wrap" style="padding:16px 20px 0;">
+    <!-- Что нужно -->
+    <div class="section-label" style="margin-bottom:14px;">Что вам нужно?</div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:1px;background:#ADAF8A;border:1px solid #ADAF8A;margin-bottom:24px;">
+      <div class="plat-card" id="logo-need-logo" onclick="toggleLogoNeed('logo',this)">
+        <div class="plat-icon">✦</div>
+        <div class="plat-name">Логотип</div>
+        <div class="plat-hint">Знак или текстовый лого</div>
+      </div>
+      <div class="plat-card" id="logo-need-avatar" onclick="toggleLogoNeed('avatar',this)">
+        <div class="plat-icon">◎</div>
+        <div class="plat-name">Аватарка</div>
+        <div class="plat-hint">Для соцсетей и мессенджеров</div>
+      </div>
+    </div>
+
+    <!-- Блок логотипа -->
+    <div id="logo-block" style="display:none;">
+      <div class="acc-block">
+        <div class="acc-header open" onclick="toggleAcc(this)">
+          <div class="acc-left"><span class="acc-num">// 01</span><span class="acc-title">Логотип</span></div>
+          <div class="acc-right"><span class="acc-arrow open">→</span></div>
+        </div>
+        <div class="acc-body open">
+          <div class="toggle-row" style="flex-direction:column;align-items:flex-start;gap:8px;">
+            <div class="toggle-name">Что делаем?</div>
+            <div class="radio-group" style="width:100%;">
+              <div class="radio-opt selected" onclick="onLogoServiceSelect('new',8000,this)">
+                <input type="radio" name="logo-service" value="new" checked>
+                <div class="radio-opt-label">Делаем новый логотип</div>
+                <div class="radio-opt-price">от 8 000 ₽</div>
+              </div>
+              <div id="logo-type-block" style="padding:8px 0 4px 16px;border-left:2px solid #ADAF8A;margin-left:8px;">
+                <div style="font-size:11px;color:#888;margin-bottom:8px;">Выберите тип:</div>
+                <div style="display:grid;grid-template-columns:1fr 1fr;gap:6px;">
+                  <div class="logo-stype-opt" data-val="letter" onclick="onLogoStyleType(this)" style="padding:8px 10px;border:1px solid #E8E8E8;cursor:pointer;font-size:12px;">Буквенный</div>
+                  <div class="logo-stype-opt" data-val="graphic" onclick="onLogoStyleType(this)" style="padding:8px 10px;border:1px solid #E8E8E8;cursor:pointer;font-size:12px;">Графический элемент</div>
+                  <div class="logo-stype-opt" data-val="combined" onclick="onLogoStyleType(this)" style="padding:8px 10px;border:1px solid #E8E8E8;cursor:pointer;font-size:12px;">Комбинированный</div>
+                  <div class="logo-stype-opt" data-val="calligraphy" onclick="onLogoStyleType(this)" style="padding:8px 10px;border:1px solid #E8E8E8;cursor:pointer;font-size:12px;">Каллиграфия</div>
+                </div>
+              </div>
+              <div class="radio-opt" onclick="onLogoServiceSelect('adapt',1000,this)">
+                <input type="radio" name="logo-service" value="adapt">
+                <div class="radio-opt-label">Адаптируем имеющийся логотип</div>
+                <div class="radio-opt-price">от 1 000 ₽</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Блок аватарки -->
+    <div id="avatar-block" style="display:none;">
+      <div class="acc-block">
+        <div class="acc-header open" onclick="toggleAcc(this)">
+          <div class="acc-left"><span class="acc-num">// 02</span><span class="acc-title">Аватарка</span></div>
+          <div class="acc-right"><span class="acc-arrow open">→</span></div>
+        </div>
+        <div class="acc-body open">
+          <div class="toggle-row" style="flex-direction:column;align-items:flex-start;gap:8px;">
+            <div class="toggle-name">Что делаем?</div>
+            <div class="radio-group" style="width:100%;" id="avatar-standalone-group">
+              <div class="radio-opt selected" onclick="onAvatarStandalone('logo-use',0,this,'Аватарка: используем ваш логотип')">
+                <input type="radio" name="avatar-standalone" value="logo-use" checked>
+                <div class="radio-opt-label">Используем ваш логотип</div>
+                <div class="radio-opt-price" style="color:#888;">бесплатно</div>
+              </div>
+              <div class="radio-opt" onclick="onAvatarStandalone('new-logo',8000,this,'Аватарка: новый логотип')">
+                <input type="radio" name="avatar-standalone" value="new-logo">
+                <div class="radio-opt-label">Делаем новый логотип</div>
+                <div class="radio-opt-price">+8 000 ₽</div>
+              </div>
+              <div id="avatar-logo-type-block" style="display:none;padding:8px 0 4px 16px;border-left:2px solid #ADAF8A;margin-left:8px;">
+                <div style="font-size:11px;color:#888;margin-bottom:8px;">Выберите тип:</div>
+                <div style="display:grid;grid-template-columns:1fr 1fr;gap:6px;">
+                  <div class="avatar-ltype-opt" data-val="letter" onclick="onAvatarLogoType(this)" style="padding:8px 10px;border:1px solid #E8E8E8;cursor:pointer;font-size:12px;">Буквенный</div>
+                  <div class="avatar-ltype-opt" data-val="graphic" onclick="onAvatarLogoType(this)" style="padding:8px 10px;border:1px solid #E8E8E8;cursor:pointer;font-size:12px;">Графический элемент</div>
+                  <div class="avatar-ltype-opt" data-val="combined" onclick="onAvatarLogoType(this)" style="padding:8px 10px;border:1px solid #E8E8E8;cursor:pointer;font-size:12px;">Комбинированный</div>
+                  <div class="avatar-ltype-opt" data-val="calligraphy" onclick="onAvatarLogoType(this)" style="padding:8px 10px;border:1px solid #E8E8E8;cursor:pointer;font-size:12px;">Каллиграфия</div>
+                </div>
+              </div>
+              <div class="radio-opt" onclick="onAvatarStandalone('adapt',1000,this,'Аватарка: адаптируем имеющийся логотип')">
+                <input type="radio" name="avatar-standalone" value="adapt">
+                <div class="radio-opt-label">Адаптируем имеющийся логотип</div>
+                <div class="radio-opt-price">от 1 000 ₽</div>
+              </div>
+              <div class="radio-opt" onclick="onAvatarStandalone('neuro',5000,this,'Нейроаватарка')">
+                <input type="radio" name="avatar-standalone" value="neuro">
+                <div class="radio-opt-label">Нейроаватарка<div style="font-size:11px;color:#888;margin-top:3px;">Образ в стиле бренда, без чётких черт лица. 100% предоплата.</div></div>
+                <div class="radio-opt-price">5 000 ₽</div>
+              </div>
+              <div class="radio-opt" onclick="onAvatarStandalone('creative',2000,this,'Новая графика / креатив')">
+                <input type="radio" name="avatar-standalone" value="creative">
+                <div class="radio-opt-label">Новая графика / креатив</div>
+                <div class="radio-opt-price">от 2 000 ₽</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Срочность -->
+    <div class="base-block" id="logo-urgency-block" style="display:none;">
+      <div class="base-header"><div class="base-title">Дополнительно</div></div>
+      <div class="base-body">
+        <div class="toggle-row" style="padding:6px 0;border:none;">
+          <div class="toggle-left"><div class="toggle-name">Срочно?</div><div class="toggle-desc">В 2 раза быстрее (+30%)</div></div>
+          <div class="toggle-right">
+            <div class="toggle-price" id="logo-urgent-label"></div>
+            <label class="tv-toggle"><input type="checkbox" id="logo-urgent" onchange="calcLogoTotal()"><span class="tv-slider"></span></label>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Контакт -->
+    <div class="base-block" id="logo-contact-block" style="display:none;">
+      <div class="base-header"><div class="base-title">Контактные данные</div></div>
+      <div class="base-body" style="gap:14px;">
+        <div class="toggle-row" style="padding:6px 0;border:none;">
+          <div class="toggle-left"><div class="toggle-name">Ваше имя</div></div>
+          <div class="toggle-right"><input type="text" id="logo-name" placeholder="Как вас зовут" style="border:1px solid #ADAF8A;padding:8px 12px;font-size:13px;width:220px;outline:none;font-family:inherit;"></div>
+        </div>
+        <div class="toggle-row" style="padding:6px 0;border:none;">
+          <div class="toggle-left"><div class="toggle-name">Telegram или WhatsApp</div></div>
+          <div class="toggle-right"><input type="text" id="logo-contact" placeholder="@username или +7..." style="border:1px solid #ADAF8A;padding:8px 12px;font-size:13px;width:220px;outline:none;font-family:inherit;"></div>
+        </div>
+        <div class="toggle-row" style="padding:6px 0;border:none;flex-direction:column;align-items:flex-start;gap:8px;">
+          <div class="toggle-name">Комментарий</div>
+          <textarea id="logo-comment" placeholder="Расскажите о проекте, стиле, пожеланиях..." rows="3" style="width:100%;border:1px solid #ADAF8A;padding:10px 12px;font-size:13px;outline:none;font-family:inherit;resize:vertical;"></textarea>
+        </div>
+      </div>
+    </div>
+
+    <!-- Итог -->
+    <div class="base-block" id="logo-summary-block" style="display:none;background:#FEF7ED;">
+      <div class="base-header" style="background:#FEF7ED;"><div class="base-title">Итог</div></div>
+      <div class="base-body" id="logo-summary-lines" style="gap:8px;"></div>
+    </div>
+  </div>
+
+  <div class="nav-btns" id="logo-nav">
+    <button class="btn-back-nav" onclick="openService('main')">← На главную</button>
+    <button class="btn-next" id="logo-send-btn" onclick="sendLogoOrder()" disabled>Отправить заявку →</button>
+  </div>
+  <div style="height:32px;"></div>
+</div>
+<div class="screen" id="screen-materials">
+  <div class="service-hero">
+    <div class="chess-strip sm" id="chess-m1"></div>
+    <div class="service-hero-content">
+      <div class="section-label">// 03 · услуга</div>
+      <h1>Бизнес-материалы</h1>
+      <p>Гайды · презентации · лид-магниты · КП — статичные и интерактивные</p>
+    </div>
+    <div class="chess-strip sm" id="chess-m2"></div>
+  </div>
+
+  <div class="section-wrap" style="padding:16px 20px 0;">
+
+    <!-- Тип материала -->
+    <div class="section-label" style="margin-bottom:14px;">Что создаём?</div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:1px;background:#ADAF8A;border:1px solid #ADAF8A;margin-bottom:24px;">
+      <div class="plat-card" data-mat="guide" onclick="toggleMat(this)">
+        <div class="plat-icon">📖</div>
+        <div class="plat-name">Гайд</div>
+        <div class="plat-hint">Обучающий материал</div>
+      </div>
+      <div class="plat-card" data-mat="leadmag" onclick="toggleMat(this)">
+        <div class="plat-icon">🎁</div>
+        <div class="plat-name">Лид-магнит</div>
+        <div class="plat-hint">Бесплатный продукт для привлечения</div>
+      </div>
+      <div class="plat-card" data-mat="prez" onclick="toggleMat(this)">
+        <div class="plat-icon">📊</div>
+        <div class="plat-name">Презентация</div>
+        <div class="plat-hint">Для выступлений или продаж</div>
+      </div>
+      <div class="plat-card" data-mat="kp" onclick="toggleMat(this)">
+        <div class="plat-icon">📄</div>
+        <div class="plat-name">КП</div>
+        <div class="plat-hint">Коммерческое предложение</div>
+      </div>
+      <div class="plat-card" data-mat="other" onclick="toggleMat(this)" style="grid-column:span 2;">
+        <div class="plat-icon">＋</div>
+        <div class="plat-name">Другое</div>
+        <div class="plat-hint">Опишу в комментарии</div>
+      </div>
+    </div>
+
+    <!-- Формат -->
+    <div id="mat-format-block" style="display:none;">
+      <div class="acc-block">
+        <div class="acc-header open" onclick="toggleAcc(this)">
+          <div class="acc-left"><span class="acc-num">// 01</span><span class="acc-title">Формат</span></div>
+          <div class="acc-right"><span class="acc-arrow open">→</span></div>
+        </div>
+        <div class="acc-body open">
+          <div class="toggle-row" style="flex-direction:column;align-items:flex-start;gap:8px;">
+            <div class="toggle-name">Какой формат нужен?</div>
+            <div class="radio-group" style="width:100%;">
+              <div class="radio-opt selected" onclick="onMatFormat('static',this)">
+                <input type="radio" name="mat-format" value="static" checked>
+                <div class="radio-opt-label">Статичный<div style="font-size:11px;color:#888;margin-top:3px;">PDF · с активными ссылками · от 500 ₽/стр</div></div>
+              </div>
+              <div id="mat-pages-row" style="padding:8px 0 4px 16px;border-left:2px solid #ADAF8A;margin-left:8px;">
+                <div style="font-size:11px;color:#888;margin-bottom:8px;">Количество страниц:</div>
+                <div style="display:flex;align-items:center;gap:12px;">
+                  <div class="counter">
+                    <button class="counter-btn" onclick="changeMatPages(-1)">−</button>
+                    <div class="counter-val" id="mat-pages-val">1</div>
+                    <button class="counter-btn" onclick="changeMatPages(1)">+</button>
+                  </div>
+                  <div style="font-size:13px;color:#5A5F0A;font-weight:500;" id="mat-pages-price">500 ₽</div>
+                </div>
+              </div>
+              <div class="radio-opt" onclick="onMatFormat('interactive',this)">
+                <input type="radio" name="mat-format" value="interactive">
+                <div class="radio-opt-label">Интерактивный<div style="font-size:11px;color:#888;margin-top:3px;">Вайбкодинг · сбор данных · уведомления в Telegram</div></div>
+              </div>
+              <div id="mat-interactive-block" style="display:none;padding:8px 0 4px 16px;border-left:2px solid #ADAF8A;margin-left:8px;">
+                <div style="font-size:11px;color:#888;margin-bottom:8px;">Объём:</div>
+                <div class="radio-group">
+                  <div class="radio-opt" onclick="onMatInteractive(3000,'до 5 экранов',this)"><input type="radio" name="mat-interactive"><div class="radio-opt-label">До 5 экранов</div><div class="radio-opt-price">от 3 000 ₽</div></div>
+                  <div class="radio-opt" onclick="onMatInteractive(5000,'до 10 экранов',this)"><input type="radio" name="mat-interactive"><div class="radio-opt-label">До 10 экранов</div><div class="radio-opt-price">от 5 000 ₽</div></div>
+                  <div class="radio-opt" onclick="onMatInteractive(9000,'до 20 экранов',this)"><input type="radio" name="mat-interactive"><div class="radio-opt-label">До 20 экранов</div><div class="radio-opt-price">от 9 000 ₽</div></div>
+                  <div class="radio-opt" onclick="onMatInteractive(0,'индивидуально',this)"><input type="radio" name="mat-interactive"><div class="radio-opt-label">Больше — обсудим индивидуально</div><div class="radio-opt-price" style="color:#888;">по запросу</div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Фирменный стиль -->
+      <div class="acc-block">
+        <div class="acc-header open" onclick="toggleAcc(this)">
+          <div class="acc-left"><span class="acc-num">// 02</span><span class="acc-title">Фирменный стиль</span></div>
+          <div class="acc-right"><span class="acc-arrow open">→</span></div>
+        </div>
+        <div class="acc-body open">
+          <div class="toggle-row" style="flex-direction:column;align-items:flex-start;gap:8px;">
+            <div class="toggle-name">Есть ли фирменный стиль?</div>
+            <div class="radio-group" style="width:100%;">
+              <div class="radio-opt selected" onclick="onMatStyle(0,'Фирменный стиль есть',this)"><input type="radio" name="mat-style" checked><div class="radio-opt-label">Уже есть — предоставлю</div></div>
+              <div class="radio-opt" onclick="onMatStyle(1000,'Фирменный стиль частичный',this)"><input type="radio" name="mat-style"><div class="radio-opt-label">Есть частично — доработаем</div><div class="radio-opt-price">+1 000 ₽</div></div>
+              <div class="radio-opt" onclick="onMatStyle(2000,'Фирменный стиль с нуля',this)"><input type="radio" name="mat-style"><div class="radio-opt-label">Создаём с нуля</div><div class="radio-opt-price">+2 000 ₽</div></div>
+              <div class="radio-opt" onclick="onMatStyle(0,'Стиль не важен',this)"><input type="radio" name="mat-style"><div class="radio-opt-label">Стиль не важен — сделаем аккуратный универсальный дизайн</div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Срочность -->
+      <div class="base-block">
+        <div class="base-header"><div class="base-title">Дополнительно</div></div>
+        <div class="base-body">
+          <div class="toggle-row" style="padding:6px 0;border:none;">
+            <div class="toggle-left"><div class="toggle-name">Срочно?</div><div class="toggle-desc">В 2 раза быстрее (+30%)</div></div>
+            <div class="toggle-right">
+              <div class="toggle-price" id="mat-urgent-label"></div>
+              <label class="tv-toggle"><input type="checkbox" id="mat-urgent" onchange="calcMatTotal()"><span class="tv-slider"></span></label>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Контакт -->
+      <div class="base-block">
+        <div class="base-header"><div class="base-title">Контактные данные</div></div>
+        <div class="base-body" style="gap:14px;">
+          <div class="toggle-row" style="padding:6px 0;border:none;">
+            <div class="toggle-left"><div class="toggle-name">Ваше имя</div></div>
+            <div class="toggle-right"><input type="text" id="mat-name" placeholder="Как вас зовут" style="border:1px solid #ADAF8A;padding:8px 12px;font-size:13px;width:220px;outline:none;font-family:inherit;"></div>
+          </div>
+          <div class="toggle-row" style="padding:6px 0;border:none;">
+            <div class="toggle-left"><div class="toggle-name">Telegram или WhatsApp</div></div>
+            <div class="toggle-right"><input type="text" id="mat-contact" placeholder="@username или +7..." style="border:1px solid #ADAF8A;padding:8px 12px;font-size:13px;width:220px;outline:none;font-family:inherit;"></div>
+          </div>
+          <div class="toggle-row" style="padding:6px 0;border:none;flex-direction:column;align-items:flex-start;gap:8px;">
+            <div class="toggle-name">Комментарий</div>
+            <textarea id="mat-comment" placeholder="Тема, цель, аудитория, пожелания..." rows="3" style="width:100%;border:1px solid #ADAF8A;padding:10px 12px;font-size:13px;outline:none;font-family:inherit;resize:vertical;"></textarea>
+          </div>
+        </div>
+      </div>
+
+      <!-- Итог -->
+      <div class="base-block" style="background:#FEF7ED;">
+        <div class="base-header" style="background:#FEF7ED;"><div class="base-title">Итог</div></div>
+        <div class="base-body" id="mat-summary-lines" style="gap:8px;"></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="nav-btns">
+    <button class="btn-back-nav" onclick="openService('main')">← На главную</button>
+    <button class="btn-next" id="mat-send-btn" onclick="sendMatOrder()" disabled>Отправить заявку →</button>
+  </div>
+  <div style="height:32px;"></div>
+</div>
+<div class="screen" id="screen-web">
+  <div class="service-hero">
+    <div class="chess-strip sm" id="chess-w1"></div>
+    <div class="service-hero-content">
+      <div class="section-label">// 04 · услуга</div>
+      <h1>Веб-дизайн</h1>
+      <p>Лендинги и сайты на вайбкодинге под вашу задачу</p>
+    </div>
+    <div class="chess-strip sm" id="chess-w2"></div>
+  </div>
+
+  <div class="section-wrap" style="padding:16px 20px 0;">
+
+    <!-- Тип сайта -->
+    <div class="section-label" style="margin-bottom:14px;">Какой сайт нужен?</div>
+    <div style="display:grid;grid-template-columns:1fr;gap:1px;background:#ADAF8A;border:1px solid #ADAF8A;margin-bottom:24px;">
+      <div class="plat-card" data-web="mini" onclick="selectWeb(this)">
+        <div class="plat-name">Мини-лендинг</div>
+        <div class="plat-hint">Одна цель — один экран. Быстрый старт, визитка, анонс. От 10 000 ₽</div>
+      </div>
+      <div class="plat-card" data-web="one" onclick="selectWeb(this)">
+        <div class="plat-name">Одностраничный сайт</div>
+        <div class="plat-hint">Полноценный лендинг с несколькими секциями. О себе, услуги, контакты. От 10 000 ₽</div>
+      </div>
+      <div class="plat-card" data-web="multi" onclick="selectWeb(this)">
+        <div class="plat-name">Многостраничный сайт</div>
+        <div class="plat-hint">Несколько страниц с навигацией. Портфолио, онлайн-школа, бизнес. От 20 000 ₽</div>
+      </div>
+    </div>
+
+    <div id="web-details-block" style="display:none;">
+      <!-- Фирменный стиль -->
+      <div class="acc-block">
+        <div class="acc-header open" onclick="toggleAcc(this)">
+          <div class="acc-left"><span class="acc-num">// 01</span><span class="acc-title">Фирменный стиль</span></div>
+          <div class="acc-right"><span class="acc-arrow open">→</span></div>
+        </div>
+        <div class="acc-body open">
+          <div class="toggle-row" style="flex-direction:column;align-items:flex-start;gap:8px;">
+            <div class="toggle-name">Есть ли фирменный стиль?</div>
+            <div class="radio-group" style="width:100%;">
+              <div class="radio-opt selected" onclick="onWebStyle(0,'Фирменный стиль есть',this)"><input type="radio" name="web-style" checked><div class="radio-opt-label">Уже есть — предоставлю</div></div>
+              <div class="radio-opt" onclick="onWebStyle(1000,'Фирменный стиль частичный',this)"><input type="radio" name="web-style"><div class="radio-opt-label">Есть частично — доработаем</div><div class="radio-opt-price">+1 000 ₽</div></div>
+              <div class="radio-opt" onclick="onWebStyle(2000,'Фирменный стиль с нуля',this)"><input type="radio" name="web-style"><div class="radio-opt-label">Создаём с нуля</div><div class="radio-opt-price">+2 000 ₽</div></div>
+              <div class="radio-opt" onclick="onWebStyle(0,'Стиль не важен',this)"><input type="radio" name="web-style"><div class="radio-opt-label">Стиль не важен — сделаем аккуратный универсальный дизайн</div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Срочность -->
+      <div class="base-block">
+        <div class="base-header"><div class="base-title">Дополнительно</div></div>
+        <div class="base-body">
+          <div class="toggle-row" style="padding:6px 0;border:none;">
+            <div class="toggle-left"><div class="toggle-name">Срочно?</div><div class="toggle-desc">В 2 раза быстрее (+30%)</div></div>
+            <div class="toggle-right">
+              <div class="toggle-price" id="web-urgent-label"></div>
+              <label class="tv-toggle"><input type="checkbox" id="web-urgent" onchange="calcWebTotal()"><span class="tv-slider"></span></label>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Контакт -->
+      <div class="base-block">
+        <div class="base-header"><div class="base-title">Контактные данные</div></div>
+        <div class="base-body" style="gap:14px;">
+          <div class="toggle-row" style="padding:6px 0;border:none;">
+            <div class="toggle-left"><div class="toggle-name">Ваше имя</div></div>
+            <div class="toggle-right"><input type="text" id="web-name" placeholder="Как вас зовут" style="border:1px solid #ADAF8A;padding:8px 12px;font-size:13px;width:220px;outline:none;font-family:inherit;"></div>
+          </div>
+          <div class="toggle-row" style="padding:6px 0;border:none;">
+            <div class="toggle-left"><div class="toggle-name">Telegram или WhatsApp</div></div>
+            <div class="toggle-right"><input type="text" id="web-contact" placeholder="@username или +7..." style="border:1px solid #ADAF8A;padding:8px 12px;font-size:13px;width:220px;outline:none;font-family:inherit;"></div>
+          </div>
+          <div class="toggle-row" style="padding:6px 0;border:none;flex-direction:column;align-items:flex-start;gap:8px;">
+            <div class="toggle-name">Комментарий</div>
+            <textarea id="web-comment" placeholder="Цель сайта, аудитория, примеры которые нравятся..." rows="3" style="width:100%;border:1px solid #ADAF8A;padding:10px 12px;font-size:13px;outline:none;font-family:inherit;resize:vertical;"></textarea>
+          </div>
+        </div>
+      </div>
+
+      <!-- Итог -->
+      <div class="base-block" style="background:#FEF7ED;">
+        <div class="base-header" style="background:#FEF7ED;"><div class="base-title">Итог</div></div>
+        <div class="base-body" id="web-summary-lines" style="gap:8px;"></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="nav-btns">
+    <button class="btn-back-nav" onclick="openService('main')">← На главную</button>
+    <button class="btn-next" id="web-send-btn" onclick="sendWebOrder()" disabled>Отправить заявку →</button>
+  </div>
+  <div style="height:32px;"></div>
+</div>
+<div class="screen" id="screen-auto">
+  <div class="service-hero">
+    <div class="chess-strip sm" id="chess-a1"></div>
+    <div class="service-hero-content">
+      <div class="section-label">// 05 · услуга</div>
+      <h1>Автоматизация</h1>
+      <p>ИИ-инструменты · приложения · интерактивные материалы</p>
+    </div>
+    <div class="chess-strip sm" id="chess-a2"></div>
+  </div>
+
+  <div class="section-wrap" style="padding:16px 20px 0;">
+    <div class="section-label" style="margin-bottom:14px;">Что нужно?</div>
+    <div style="display:grid;grid-template-columns:1fr;gap:1px;background:#ADAF8A;border:1px solid #ADAF8A;margin-bottom:24px;">
+
+      <div class="plat-card" data-auto="gpt" onclick="selectAuto(this)">
+        <div class="plat-name">GPT-агент по визуалу</div>
+        <div class="plat-hint">Обучим ИИ вашему фирменному стилю — генерирует тексты, подписи и идеи в голосе вашего бренда · от 8 000 ₽</div>
+      </div>
+
+      <div class="plat-card" data-auto="app" onclick="selectAuto(this)">
+        <div class="plat-name">Мини-апп / веб-апп</div>
+        <div class="plat-hint">Небольшое веб-приложение под задачу малого бизнеса · от 15 000 ₽</div>
+      </div>
+
+      <div class="plat-card" data-auto="interactive" onclick="selectAuto(this)">
+        <div class="plat-name">Интерактивные материалы</div>
+        <div class="plat-hint">Вайбкодинг · сбор данных · уведомления в Telegram · калькуляторы, анкеты, опросы, лид-магниты, игровые форматы и др. · от 1 000 ₽</div>
+      </div>
+
+      <div class="plat-card" data-auto="custom" onclick="selectAuto(this)">
+        <div class="plat-name">Своя задача</div>
+        <div class="plat-hint">Опишите — я свяжусь и озвучу стоимость</div>
+      </div>
+
+    </div>
+
+    <div id="auto-details-block" style="display:none;">
+
+      <!-- Интерактивные материалы — пакеты по объёму -->
+      <div id="auto-interactive-block" style="display:none;">
+        <div class="acc-block">
+          <div class="acc-header open" onclick="toggleAcc(this)">
+            <div class="acc-left"><span class="acc-num">// 01</span><span class="acc-title">Объём</span></div>
+            <div class="acc-right"><span class="acc-arrow open">→</span></div>
+          </div>
+          <div class="acc-body open">
+            <div class="toggle-row" style="flex-direction:column;align-items:flex-start;gap:8px;">
+              <div class="toggle-name">Количество экранов / шагов</div>
+              <div class="radio-group" style="width:100%;">
+                <div class="radio-opt" onclick="onAutoInteractive(1000,'до 5 экранов',this)"><input type="radio" name="auto-interactive"><div class="radio-opt-label">До 5 экранов</div><div class="radio-opt-price">от 1 000 ₽</div></div>
+                <div class="radio-opt" onclick="onAutoInteractive(3000,'до 10 экранов',this)"><input type="radio" name="auto-interactive"><div class="radio-opt-label">До 10 экранов</div><div class="radio-opt-price">от 3 000 ₽</div></div>
+                <div class="radio-opt" onclick="onAutoInteractive(5000,'до 20 экранов',this)"><input type="radio" name="auto-interactive"><div class="radio-opt-label">До 20 экранов</div><div class="radio-opt-price">от 5 000 ₽</div></div>
+                <div class="radio-opt" onclick="onAutoInteractive(0,'индивидуально',this)"><input type="radio" name="auto-interactive"><div class="radio-opt-label">Больше — обсудим индивидуально</div><div class="radio-opt-price" style="color:#888;">по запросу</div></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Срочность -->
+      <div class="base-block" id="auto-urgency-block">
+        <div class="base-header"><div class="base-title">Дополнительно</div></div>
+        <div class="base-body">
+          <div class="toggle-row" style="padding:6px 0;border:none;">
+            <div class="toggle-left"><div class="toggle-name">Срочно?</div><div class="toggle-desc">В 2 раза быстрее (+30%)</div></div>
+            <div class="toggle-right">
+              <div class="toggle-price" id="auto-urgent-label"></div>
+              <label class="tv-toggle"><input type="checkbox" id="auto-urgent" onchange="calcAutoTotal()"><span class="tv-slider"></span></label>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Контакт -->
+      <div class="base-block">
+        <div class="base-header"><div class="base-title">Контактные данные</div></div>
+        <div class="base-body" style="gap:14px;">
+          <div class="toggle-row" style="padding:6px 0;border:none;">
+            <div class="toggle-left"><div class="toggle-name">Ваше имя</div></div>
+            <div class="toggle-right"><input type="text" id="auto-name" placeholder="Как вас зовут" style="border:1px solid #ADAF8A;padding:8px 12px;font-size:13px;width:220px;outline:none;font-family:inherit;"></div>
+          </div>
+          <div class="toggle-row" style="padding:6px 0;border:none;">
+            <div class="toggle-left"><div class="toggle-name">Telegram или WhatsApp</div></div>
+            <div class="toggle-right"><input type="text" id="auto-contact" placeholder="@username или +7..." style="border:1px solid #ADAF8A;padding:8px 12px;font-size:13px;width:220px;outline:none;font-family:inherit;"></div>
+          </div>
+          <div class="toggle-row" style="padding:6px 0;border:none;flex-direction:column;align-items:flex-start;gap:8px;">
+            <div class="toggle-name">Комментарий</div>
+            <textarea id="auto-comment" placeholder="Опишите задачу, цель, что должно происходить..." rows="3" style="width:100%;border:1px solid #ADAF8A;padding:10px 12px;font-size:13px;outline:none;font-family:inherit;resize:vertical;"></textarea>
+          </div>
+        </div>
+      </div>
+
+      <!-- Итог -->
+      <div class="base-block" style="background:#FEF7ED;">
+        <div class="base-header" style="background:#FEF7ED;"><div class="base-title">Итог</div></div>
+        <div class="base-body" id="auto-summary-lines" style="gap:8px;"></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="nav-btns">
+    <button class="btn-back-nav" onclick="openService('main')">← На главную</button>
+    <button class="btn-next" id="auto-send-btn" onclick="sendAutoOrder()" disabled>Отправить заявку →</button>
+  </div>
+  <div style="height:32px;"></div>
+</div>
+<div class="screen" id="screen-retainer">
+  <div class="service-hero">
+    <div class="chess-strip sm" id="chess-r1"></div>
+    <div class="service-hero-content">
+      <div class="section-label">// 06 · сотрудничество</div>
+      <h1>Постоянное сотрудничество</h1>
+      <p>Становлюсь частью вашей команды — веду визуал проекта на постоянной основе</p>
+    </div>
+    <div class="chess-strip sm" id="chess-r2"></div>
+  </div>
+
+  <div class="section-wrap" style="padding:16px 20px 0;">
+    <div class="section-label" style="margin-bottom:14px;">Выберите формат</div>
+    <div style="display:grid;grid-template-columns:1fr;gap:1px;background:#ADAF8A;border:1px solid #ADAF8A;margin-bottom:24px;">
+
+      <div class="plat-card" data-ret="light" onclick="selectRetainer(this)">
+        <div class="plat-name">3 часа в день — 30 000 ₽/мес</div>
+        <div class="plat-hint">Для некрупных проектов · часы распределяю я сама внутри рабочего дня · регулярные задачи по визуалу · расходы на ИИ-инструменты оплачивает заказчик</div>
+      </div>
+
+      <div class="plat-card" data-ret="full" onclick="selectRetainer(this)">
+        <div class="plat-name">8 часов в день — 70 000 ₽/мес</div>
+        <div class="plat-hint">Для крупных проектов с максимальным количеством визуальных задач · полный рабочий день с 8:00 до 17:00 с перерывом на обед · я полностью в вашем распоряжении · расходы на ИИ-инструменты оплачивает заказчик</div>
+      </div>
+
+    </div>
+
+    <div id="ret-details-block" style="display:none;">
+      <div class="base-block">
+        <div class="base-header"><div class="base-title">Контактные данные</div></div>
+        <div class="base-body" style="gap:14px;">
+          <div class="toggle-row" style="padding:6px 0;border:none;">
+            <div class="toggle-left"><div class="toggle-name">Ваше имя</div></div>
+            <div class="toggle-right"><input type="text" id="ret-name" placeholder="Как вас зовут" style="border:1px solid #ADAF8A;padding:8px 12px;font-size:13px;width:220px;outline:none;font-family:inherit;"></div>
+          </div>
+          <div class="toggle-row" style="padding:6px 0;border:none;">
+            <div class="toggle-left"><div class="toggle-name">Telegram или WhatsApp</div></div>
+            <div class="toggle-right"><input type="text" id="ret-contact" placeholder="@username или +7..." style="border:1px solid #ADAF8A;padding:8px 12px;font-size:13px;width:220px;outline:none;font-family:inherit;"></div>
+          </div>
+          <div class="toggle-row" style="padding:6px 0;border:none;flex-direction:column;align-items:flex-start;gap:8px;">
+            <div class="toggle-name">Расскажите о проекте</div>
+            <textarea id="ret-comment" placeholder="Что за проект, какие задачи по визуалу, когда планируете начать..." rows="3" style="width:100%;border:1px solid #ADAF8A;padding:10px 12px;font-size:13px;outline:none;font-family:inherit;resize:vertical;"></textarea>
+          </div>
+        </div>
+      </div>
+
+      <div class="base-block" style="background:#FEF7ED;">
+        <div class="base-header" style="background:#FEF7ED;"><div class="base-title">Итог</div></div>
+        <div class="base-body" id="ret-summary-lines" style="gap:8px;"></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="nav-btns">
+    <button class="btn-back-nav" onclick="openService('main')">← На главную</button>
+    <button class="btn-next" id="ret-send-btn" onclick="sendRetainerOrder()" disabled>Отправить заявку →</button>
+  </div>
+  <div style="height:32px;"></div>
+</div>
+
+<div class="screen" id="screen-custom">
+  <div class="service-hero">
+    <div class="chess-strip sm" id="chess-c1"></div>
+    <div class="service-hero-content">
+      <div class="section-label">// своя задача</div>
+      <h1>Своя задача</h1>
+      <p>Не нашли подходящий вариант? Опишите — свяжусь и озвучу стоимость</p>
+    </div>
+    <div class="chess-strip sm" id="chess-c2"></div>
+  </div>
+
+  <div class="section-wrap" style="padding:16px 20px 0;">
+    <div class="base-block">
+      <div class="base-header"><div class="base-title">Расскажите о задаче</div></div>
+      <div class="base-body" style="gap:14px;">
+        <div class="toggle-row" style="padding:6px 0;border:none;">
+          <div class="toggle-left"><div class="toggle-name">Ваше имя</div></div>
+          <div class="toggle-right"><input type="text" id="custom-name" placeholder="Как вас зовут" style="border:1px solid #ADAF8A;padding:8px 12px;font-size:13px;width:220px;outline:none;font-family:inherit;"></div>
+        </div>
+        <div class="toggle-row" style="padding:6px 0;border:none;">
+          <div class="toggle-left"><div class="toggle-name">Telegram или WhatsApp</div></div>
+          <div class="toggle-right"><input type="text" id="custom-contact" placeholder="@username или +7..." style="border:1px solid #ADAF8A;padding:8px 12px;font-size:13px;width:220px;outline:none;font-family:inherit;"></div>
+        </div>
+        <div class="toggle-row" style="padding:6px 0;border:none;flex-direction:column;align-items:flex-start;gap:8px;">
+          <div class="toggle-name">Опишите задачу</div>
+          <textarea id="custom-comment" placeholder="Что нужно сделать, для какой платформы, сроки, пожелания..." rows="5" style="width:100%;border:1px solid #ADAF8A;padding:10px 12px;font-size:13px;outline:none;font-family:inherit;resize:vertical;"></textarea>
+        </div>
+      </div>
+    </div>
+    <div style="font-size:12px;color:#888;margin-bottom:20px;line-height:1.6;">Я получу вашу заявку, изучу задачу и свяжусь с вами для обсуждения деталей и стоимости.</div>
+  </div>
+
+  <div class="nav-btns">
+    <button class="btn-back-nav" onclick="openService('main')">← На главную</button>
+    <button class="btn-next" onclick="sendCustomOrder()">Отправить →</button>
+  </div>
+  <div style="height:32px;"></div>
+</div>
+
+<!-- BOTTOM BAR -->
+<div class="bottom-bar" id="bottom-bar" style="display:none;">
+  <div class="bar-info">
+    <div class="bar-label">Итого</div>
+    <div class="bar-total" id="bar-total-val">0 ₽</div>
+    <div class="bar-discount" id="bar-discount-txt"></div>
+  </div>
+  <button class="bar-btn" onclick="goStep(3)">Оформить заявку →</button>
+</div>
+
+<script>
+const BOT_TOKEN = '8729694935:AAGQglihPOHfoNL2MrJjA9S95m8anNV10Nc';
+const CHAT_ID = '850695883';
+
+// ---- RETAINER SERVICE ----
+const retState = { type: null, price: 0, label: '' };
+
+function selectRetainer(card) {
+  document.querySelectorAll('[data-ret]').forEach(c => c.classList.remove('selected'));
+  card.classList.add('selected');
+  const t = card.dataset.ret;
+  retState.type = t;
+  retState.price = t === 'light' ? 30000 : 70000;
+  retState.label = t === 'light' ? '3 часа в день' : '8 часов в день';
+  document.getElementById('ret-details-block').style.display = 'block';
+  document.getElementById('ret-send-btn').disabled = false;
+  document.getElementById('bottom-bar').style.display = 'flex';
+  const bt = document.getElementById('bar-total-val');
+  if(bt) bt.textContent = retState.price.toLocaleString('ru') + ' ₽/мес';
+  const bd = document.getElementById('bar-discount-txt');
+  if(bd) bd.textContent = '';
+  const lines = document.getElementById('ret-summary-lines');
+  lines.innerHTML = `
+    <div style="display:flex;justify-content:space-between;padding:6px 0;border-bottom:1px solid #f0ede4;">
+      <div style="font-size:13px;color:#232627;">${retState.label}</div>
+      <div style="font-size:13px;font-weight:500;color:#5A5F0A;">${retState.price.toLocaleString('ru')} ₽/мес</div>
+    </div>
+    <div style="display:flex;justify-content:space-between;padding:12px 0 4px;margin-top:4px;">
+      <div style="font-family:'ActayWide',sans-serif;font-size:12px;font-weight:700;letter-spacing:0.05em;text-transform:uppercase;">Итого</div>
+      <div style="font-family:'ActayWide',sans-serif;font-size:18px;font-weight:700;color:#232627;">${retState.price.toLocaleString('ru')} ₽/мес</div>
+    </div>`;
+}
+
+async function sendRetainerOrder() {
+  const name = document.getElementById('ret-name').value.trim();
+  const contact = document.getElementById('ret-contact').value.trim();
+  if(!name||!contact){alert('Укажите имя и контакт');return;}
+  let msg = `📋 *Новая заявка · Постоянное сотрудничество*\n\n`;
+  msg += `👤 *Имя:* ${name}\n📱 *Контакт:* ${contact}\n\n`;
+  msg += `📦 *Формат:* ${retState.label} — ${retState.price.toLocaleString('ru')} ₽/мес`;
+  const comment = document.getElementById('ret-comment').value.trim();
+  if(comment) msg += `\n\n💬 *О проекте:* ${comment}`;
+  try { await fetch(`https://api.telegram.org/bot${BOT_TOKEN}/sendMessage`,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({chat_id:CHAT_ID,text:msg,parse_mode:'Markdown'})}); } catch(e){}
+  document.getElementById('screen-retainer').innerHTML = `<div class="success-block"><div class="success-icon">✦</div><div class="success-h">Заявка отправлена</div><p class="success-p">Я получила ваш запрос и свяжусь с вами в ближайшее время.</p><p style="margin-top:16px;font-size:12px;color:#ADAF8A;">@tatarka_visual</p><button class="btn-next" style="margin-top:24px;" onclick="openService('main')">← На главную</button></div>`;
+  window.scrollTo(0,0);
+}
+
+async function sendCustomOrder() {
+  const name = document.getElementById('custom-name').value.trim();
+  const contact = document.getElementById('custom-contact').value.trim();
+  if(!name||!contact){alert('Укажите имя и контакт');return;}
+  let msg = `📋 *Новая заявка · Своя задача*\n\n`;
+  msg += `👤 *Имя:* ${name}\n📱 *Контакт:* ${contact}`;
+  const comment = document.getElementById('custom-comment').value.trim();
+  if(comment) msg += `\n\n💬 *Задача:* ${comment}`;
+  try { await fetch(`https://api.telegram.org/bot${BOT_TOKEN}/sendMessage`,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({chat_id:CHAT_ID,text:msg,parse_mode:'Markdown'})}); } catch(e){}
+  document.getElementById('screen-custom').innerHTML = `<div class="success-block"><div class="success-icon">✦</div><div class="success-h">Заявка отправлена</div><p class="success-p">Я получила ваш запрос и свяжусь с вами в ближайшее время.</p><p style="margin-top:16px;font-size:12px;color:#ADAF8A;">@tatarka_visual</p><button class="btn-next" style="margin-top:24px;" onclick="openService('main')">← На главную</button></div>`;
+  window.scrollTo(0,0);
+}
+
+// ---- AUTOMATION SERVICE ----
+const autoState = { type: null, typeLabel: '', basePrice: 0, interactivePrice: 0, interactiveLabel: '' };
+const autoPrices = { gpt: 8000, app: 15000, interactive: 0, custom: 0 };
+const autoLabels = { gpt: 'GPT-агент по визуалу', app: 'Мини-апп / веб-апп', interactive: 'Интерактивные материалы', custom: 'Своя задача' };
+
+function selectAuto(card) {
+  document.querySelectorAll('[data-auto]').forEach(c => c.classList.remove('selected'));
+  card.classList.add('selected');
+  const t = card.dataset.auto;
+  autoState.type = t;
+  autoState.typeLabel = autoLabels[t];
+  autoState.basePrice = autoPrices[t];
+  autoState.interactivePrice = 0;
+  autoState.interactiveLabel = '';
+  document.getElementById('auto-details-block').style.display = 'block';
+  document.getElementById('auto-interactive-block').style.display = t === 'interactive' ? 'block' : 'none';
+  // срочность не нужна для custom
+  document.getElementById('auto-urgency-block').style.display = t === 'custom' ? 'none' : 'block';
+  document.getElementById('auto-send-btn').disabled = false;
+  calcAutoTotal();
+}
+
+function onAutoInteractive(price, label, el) {
+  document.querySelectorAll('[name="auto-interactive"]').forEach(r => { r.closest('.radio-opt').classList.remove('selected'); r.checked = false; });
+  el.classList.add('selected'); el.querySelector('input').checked = true;
+  autoState.interactivePrice = price; autoState.interactiveLabel = label;
+  calcAutoTotal();
+}
+
+function calcAutoTotal() {
+  const base = autoState.type === 'interactive' ? autoState.interactivePrice : autoState.basePrice;
+  const urgent = document.getElementById('auto-urgent') && document.getElementById('auto-urgent').checked;
+  const total = urgent ? Math.round(base * 1.3) : base;
+  const ul = document.getElementById('auto-urgent-label');
+  if(ul) ul.textContent = urgent ? '+30%' : '';
+  // bottom bar
+  if(autoState.type) {
+    document.getElementById('bottom-bar').style.display = 'flex';
+    const bt = document.getElementById('bar-total-val');
+    const totalStr = autoState.type === 'custom' ? 'по запросу' : (total > 0 ? 'от ' + total.toLocaleString('ru') + ' ₽' : 'по запросу');
+    if(bt) bt.textContent = totalStr;
+    const bd = document.getElementById('bar-discount-txt');
+    if(bd) bd.textContent = urgent && base > 0 ? 'срочно +30%' : '';
+  }
+  const lines = document.getElementById('auto-summary-lines');
+  if(!lines) return;
+  lines.innerHTML = '';
+  const add = (label, val) => { lines.innerHTML += `<div style="display:flex;justify-content:space-between;padding:6px 0;border-bottom:1px solid #f0ede4;"><div style="font-size:13px;color:#232627;">${label}</div><div style="font-size:13px;font-weight:500;color:#5A5F0A;">${val}</div></div>`; };
+  if(autoState.type === 'interactive' && autoState.interactiveLabel) {
+    add('Интерактивные материалы · ' + autoState.interactiveLabel, autoState.interactivePrice > 0 ? 'от ' + autoState.interactivePrice.toLocaleString('ru') + ' ₽' : 'по запросу');
+  } else if(autoState.typeLabel) {
+    const priceStr = autoState.basePrice > 0 ? 'от ' + autoState.basePrice.toLocaleString('ru') + ' ₽' : 'по запросу';
+    add(autoState.typeLabel, priceStr);
+  }
+  if(urgent && base > 0) add('Срочность', '+30%');
+  const totalStr = autoState.type === 'custom' ? 'по запросу' : (total > 0 ? 'от ' + total.toLocaleString('ru') + ' ₽' : 'по запросу');
+  lines.innerHTML += `<div style="display:flex;justify-content:space-between;padding:12px 0 4px;margin-top:4px;"><div style="font-family:'ActayWide',sans-serif;font-size:12px;font-weight:700;letter-spacing:0.05em;text-transform:uppercase;">Итого</div><div style="font-family:'ActayWide',sans-serif;font-size:18px;font-weight:700;color:#232627;">${totalStr}</div></div>`;
+}
+
+async function sendAutoOrder() {
+  const name = document.getElementById('auto-name').value.trim();
+  const contact = document.getElementById('auto-contact').value.trim();
+  if(!name||!contact){alert('Укажите имя и контакт');return;}
+  const urgent = document.getElementById('auto-urgent') && document.getElementById('auto-urgent').checked;
+  const base = autoState.type === 'interactive' ? autoState.interactivePrice : autoState.basePrice;
+  const total = urgent ? Math.round(base*1.3) : base;
+  let msg = `📋 *Новая заявка · Автоматизация*\n\n`;
+  msg += `👤 *Имя:* ${name}\n📱 *Контакт:* ${contact}\n\n📦 *Задача:*\n`;
+  if(autoState.type==='interactive' && autoState.interactiveLabel) {
+    msg += `· Интерактивные материалы · ${autoState.interactiveLabel} — ${autoState.interactivePrice>0?'от '+autoState.interactivePrice.toLocaleString('ru')+' ₽':'по запросу'}\n`;
+  } else {
+    msg += `· ${autoState.typeLabel}${autoState.basePrice>0?' — от '+autoState.basePrice.toLocaleString('ru')+' ₽':''}\n`;
+  }
+  if(urgent && base>0) msg += `\n⚡ Срочно: +30%`;
+  msg += `\n\n💰 *Итого: ${total>0?'от '+total.toLocaleString('ru')+' ₽':'по запросу'}*`;
+  const comment = document.getElementById('auto-comment').value.trim();
+  if(comment) msg += `\n\n💬 *Комментарий:* ${comment}`;
+  try { await fetch(`https://api.telegram.org/bot${BOT_TOKEN}/sendMessage`,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({chat_id:CHAT_ID,text:msg,parse_mode:'Markdown'})}); } catch(e){}
+  document.getElementById('screen-auto').innerHTML = `<div class="success-block"><div class="success-icon">✦</div><div class="success-h">Заявка отправлена</div><p class="success-p">Я получила ваш запрос и свяжусь с вами в ближайшее время.</p><p style="margin-top:16px;font-size:12px;color:#ADAF8A;">@tatarka_visual</p><button class="btn-next" style="margin-top:24px;" onclick="openService('main')">← На главную</button></div>`;
+  window.scrollTo(0,0);
+}
+
+// ---- WEB DESIGN SERVICE ----
+const webState = { type: null, basePrice: 0, typeLabel: '', stylePrice: 0, styleLabel: 'Фирменный стиль есть' };
+
+function selectWeb(card) {
+  document.querySelectorAll('[data-web]').forEach(c => c.classList.remove('selected'));
+  card.classList.add('selected');
+  const t = card.dataset.web;
+  webState.type = t;
+  webState.basePrice = t === 'multi' ? 20000 : 10000;
+  webState.typeLabel = { mini:'Мини-лендинг', one:'Одностраничный сайт', multi:'Многостраничный сайт' }[t];
+  document.getElementById('web-details-block').style.display = 'block';
+  document.getElementById('web-send-btn').disabled = false;
+  calcWebTotal();
+}
+
+function onWebStyle(price, label, el) {
+  document.querySelectorAll('[name="web-style"]').forEach(r => { r.closest('.radio-opt').classList.remove('selected'); r.checked = false; });
+  el.classList.add('selected'); el.querySelector('input').checked = true;
+  webState.stylePrice = price; webState.styleLabel = label;
+  calcWebTotal();
+}
+
+function calcWebTotal() {
+  const base = webState.basePrice + webState.stylePrice;
+  const urgent = document.getElementById('web-urgent') && document.getElementById('web-urgent').checked;
+  const total = urgent ? Math.round(base * 1.3) : base;
+  const ul = document.getElementById('web-urgent-label');
+  if(ul) ul.textContent = urgent ? '+30%' : '';
+  // bottom bar
+  if(webState.type) {
+    document.getElementById('bottom-bar').style.display = 'flex';
+    const bt = document.getElementById('bar-total-val');
+    if(bt) bt.textContent = 'от ' + total.toLocaleString('ru') + ' ₽';
+    const bd = document.getElementById('bar-discount-txt');
+    if(bd) bd.textContent = urgent ? 'срочно +30%' : '';
+  }
+  const lines = document.getElementById('web-summary-lines');
+  if(!lines) return;
+  lines.innerHTML = '';
+  const add = (label, val) => { lines.innerHTML += `<div style="display:flex;justify-content:space-between;padding:6px 0;border-bottom:1px solid #f0ede4;"><div style="font-size:13px;color:#232627;">${label}</div><div style="font-size:13px;font-weight:500;color:#5A5F0A;">${val}</div></div>`; };
+  if(webState.typeLabel) add(webState.typeLabel, 'от '+webState.basePrice.toLocaleString('ru')+' ₽');
+  if(webState.stylePrice) add(webState.styleLabel, '+'+webState.stylePrice.toLocaleString('ru')+' ₽');
+  if(urgent) add('Срочность', '+30%');
+  lines.innerHTML += `<div style="display:flex;justify-content:space-between;padding:12px 0 4px;margin-top:4px;"><div style="font-family:'ActayWide',sans-serif;font-size:12px;font-weight:700;letter-spacing:0.05em;text-transform:uppercase;">Итого</div><div style="font-family:'ActayWide',sans-serif;font-size:18px;font-weight:700;color:#232627;">от ${total.toLocaleString('ru')} ₽</div></div>`;
+}
+
+async function sendWebOrder() {
+  const name = document.getElementById('web-name').value.trim();
+  const contact = document.getElementById('web-contact').value.trim();
+  if(!name||!contact){alert('Укажите имя и контакт');return;}
+  const urgent = document.getElementById('web-urgent').checked;
+  const base = webState.basePrice + webState.stylePrice;
+  const total = urgent ? Math.round(base*1.3) : base;
+  let msg = `📋 *Новая заявка · Веб-дизайн*\n\n`;
+  msg += `👤 *Имя:* ${name}\n📱 *Контакт:* ${contact}\n\n📦 *Состав:*\n`;
+  msg += `· ${webState.typeLabel} — от ${webState.basePrice.toLocaleString('ru')} ₽\n`;
+  if(webState.stylePrice) msg += `· ${webState.styleLabel} — +${webState.stylePrice.toLocaleString('ru')} ₽\n`;
+  if(urgent) msg += `\n⚡ Срочно: +30%`;
+  msg += `\n\n💰 *Итого: от ${total.toLocaleString('ru')} ₽*`;
+  const comment = document.getElementById('web-comment').value.trim();
+  if(comment) msg += `\n\n💬 *Комментарий:* ${comment}`;
+  try { await fetch(`https://api.telegram.org/bot${BOT_TOKEN}/sendMessage`,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({chat_id:CHAT_ID,text:msg,parse_mode:'Markdown'})}); } catch(e){}
+  document.getElementById('screen-web').innerHTML = `<div class="success-block"><div class="success-icon">✦</div><div class="success-h">Заявка отправлена</div><p class="success-p">Я получила ваш запрос и свяжусь с вами в ближайшее время.</p><p style="margin-top:16px;font-size:12px;color:#ADAF8A;">@tatarka_visual</p><button class="btn-next" style="margin-top:24px;" onclick="openService('main')">← На главную</button></div>`;
+  window.scrollTo(0,0);
+}
+
+// ---- MATERIALS SERVICE ----
+const matState = { types: new Set(), format: 'static', pages: 1, interactivePrice: 0, interactiveLabel: '', stylePrice: 0, styleLabel: 'Фирменный стиль есть' };
+
+function toggleMat(card) {
+  const t = card.dataset.mat;
+  if(matState.types.has(t)) { matState.types.delete(t); card.classList.remove('selected'); }
+  else { matState.types.add(t); card.classList.add('selected'); }
+  document.getElementById('mat-format-block').style.display = matState.types.size > 0 ? 'block' : 'none';
+  document.getElementById('mat-send-btn').disabled = matState.types.size === 0;
+  calcMatTotal();
+}
+
+function onMatFormat(type, el) {
+  document.querySelectorAll('[name="mat-format"]').forEach(r => { r.closest('.radio-opt').classList.remove('selected'); r.checked = false; });
+  el.classList.add('selected'); el.querySelector('input').checked = true;
+  matState.format = type;
+  document.getElementById('mat-pages-row').style.display = type === 'static' ? 'block' : 'none';
+  document.getElementById('mat-interactive-block').style.display = type === 'interactive' ? 'block' : 'none';
+  calcMatTotal();
+}
+
+function changeMatPages(delta) {
+  matState.pages = Math.max(1, matState.pages + delta);
+  document.getElementById('mat-pages-val').textContent = matState.pages;
+  document.getElementById('mat-pages-price').textContent = (matState.pages * 500).toLocaleString('ru') + ' ₽';
+  calcMatTotal();
+}
+
+function onMatInteractive(price, label, el) {
+  document.querySelectorAll('[name="mat-interactive"]').forEach(r => { r.closest('.radio-opt').classList.remove('selected'); r.checked = false; });
+  el.classList.add('selected'); el.querySelector('input').checked = true;
+  matState.interactivePrice = price; matState.interactiveLabel = label;
+  calcMatTotal();
+}
+
+function onMatStyle(price, label, el) {
+  document.querySelectorAll('[name="mat-style"]').forEach(r => { r.closest('.radio-opt').classList.remove('selected'); r.checked = false; });
+  el.classList.add('selected'); el.querySelector('input').checked = true;
+  matState.stylePrice = price; matState.styleLabel = label;
+  calcMatTotal();
+}
+
+function calcMatTotal() {
+  let base = 0;
+  if(matState.format === 'static') base = matState.pages * 500;
+  else base = matState.interactivePrice;
+  base += matState.stylePrice;
+  const urgent = document.getElementById('mat-urgent') && document.getElementById('mat-urgent').checked;
+  let total = urgent ? Math.round(base * 1.3) : base;
+  const ul = document.getElementById('mat-urgent-label');
+  if(ul) ul.textContent = urgent ? '+30%' : '';
+  // bottom bar
+  if(matState.types.size > 0) {
+    document.getElementById('bottom-bar').style.display = 'flex';
+    const bt = document.getElementById('bar-total-val');
+    if(bt) bt.textContent = (total > 0 ? 'от ' : '') + total.toLocaleString('ru') + ' ₽';
+    const bd = document.getElementById('bar-discount-txt');
+    if(bd) bd.textContent = urgent ? 'срочно +30%' : '';
+  }
+  const lines = document.getElementById('mat-summary-lines');
+  if(!lines) return;
+  lines.innerHTML = '';
+  const add = (label, val) => { lines.innerHTML += `<div style="display:flex;justify-content:space-between;padding:6px 0;border-bottom:1px solid #f0ede4;"><div style="font-size:13px;color:#232627;">${label}</div><div style="font-size:13px;font-weight:500;color:#5A5F0A;">${val}</div></div>`; };
+  const typeNames = { guide:'Гайд', leadmag:'Лид-магнит', prez:'Презентация', kp:'КП', other:'Другое' };
+  add('Тип', [...matState.types].map(t=>typeNames[t]).join(', '));
+  if(matState.format==='static') add(`Статичный · ${matState.pages} стр.`, 'от '+(matState.pages*500).toLocaleString('ru')+' ₽');
+  else if(matState.interactiveLabel) add('Интерактивный · '+matState.interactiveLabel, matState.interactivePrice>0?'от '+matState.interactivePrice.toLocaleString('ru')+' ₽':'по запросу');
+  if(matState.stylePrice) add(matState.styleLabel, '+'+matState.stylePrice.toLocaleString('ru')+' ₽');
+  if(urgent) add('Срочность', '+30%');
+  const totalStr = total > 0 ? 'от '+total.toLocaleString('ru')+' ₽' : 'по запросу';
+  lines.innerHTML += `<div style="display:flex;justify-content:space-between;padding:12px 0 4px;margin-top:4px;"><div style="font-family:'ActayWide',sans-serif;font-size:12px;font-weight:700;letter-spacing:0.05em;text-transform:uppercase;">Итого</div><div style="font-family:'ActayWide',sans-serif;font-size:18px;font-weight:700;color:#232627;">${totalStr}</div></div>`;
+}
+
+async function sendMatOrder() {
+  const name = document.getElementById('mat-name').value.trim();
+  const contact = document.getElementById('mat-contact').value.trim();
+  if(!name||!contact){alert('Укажите имя и контакт');return;}
+  const urgent = document.getElementById('mat-urgent').checked;
+  const typeNames = { guide:'Гайд', leadmag:'Лид-магнит', prez:'Презентация', kp:'КП', other:'Другое' };
+  let base = matState.format==='static' ? matState.pages*500 : matState.interactivePrice;
+  base += matState.stylePrice;
+  const total = urgent ? Math.round(base*1.3) : base;
+  let msg = `📋 *Новая заявка · Бизнес-материалы*\n\n`;
+  msg += `👤 *Имя:* ${name}\n📱 *Контакт:* ${contact}\n\n📦 *Состав:*\n`;
+  msg += `· Тип: ${[...matState.types].map(t=>typeNames[t]).join(', ')}\n`;
+  if(matState.format==='static') msg += `· Статичный · ${matState.pages} стр. — от ${(matState.pages*500).toLocaleString('ru')} ₽\n`;
+  else msg += `· Интерактивный · ${matState.interactiveLabel} — ${matState.interactivePrice>0?'от '+matState.interactivePrice.toLocaleString('ru')+' ₽':'по запросу'}\n`;
+  if(matState.stylePrice) msg += `· ${matState.styleLabel} — +${matState.stylePrice.toLocaleString('ru')} ₽\n`;
+  if(urgent) msg += `\n⚡ Срочно: +30%`;
+  msg += `\n\n💰 *Итого: ${total>0?'от '+total.toLocaleString('ru')+' ₽':'по запросу'}*`;
+  const comment = document.getElementById('mat-comment').value.trim();
+  if(comment) msg += `\n\n💬 *Комментарий:* ${comment}`;
+  try { await fetch(`https://api.telegram.org/bot${BOT_TOKEN}/sendMessage`,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({chat_id:CHAT_ID,text:msg,parse_mode:'Markdown'})}); } catch(e){}
+  document.getElementById('screen-materials').innerHTML = `<div class="success-block"><div class="success-icon">✦</div><div class="success-h">Заявка отправлена</div><p class="success-p">Я получила ваш запрос и свяжусь с вами в ближайшее время.</p><p style="margin-top:16px;font-size:12px;color:#ADAF8A;">@tatarka_visual</p><button class="btn-next" style="margin-top:24px;" onclick="openService('main')">← На главную</button></div>`;
+  window.scrollTo(0,0);
+}
+
+// ---- LOGO/AVATAR SERVICE ----
+const logoState = { needs: new Set(), logoService: 'new', logoPrice: 8000, avatarService: 'logo-use', avatarPrice: 0 };
+
+function toggleLogoNeed(type, card) {
+  if(logoState.needs.has(type)) {
+    logoState.needs.delete(type);
+    card.classList.remove('selected');
+  } else {
+    logoState.needs.add(type);
+    card.classList.add('selected');
+  }
+  document.getElementById('logo-block').style.display = logoState.needs.has('logo') ? 'block' : 'none';
+  document.getElementById('avatar-block').style.display = logoState.needs.has('avatar') ? 'block' : 'none';
+  const show = logoState.needs.size > 0;
+  document.getElementById('logo-urgency-block').style.display = show ? 'block' : 'none';
+  document.getElementById('logo-contact-block').style.display = show ? 'block' : 'none';
+  document.getElementById('logo-summary-block').style.display = show ? 'block' : 'none';
+  document.getElementById('logo-send-btn').disabled = !show;
+  calcLogoTotal();
+}
+
+function onLogoServiceSelect(type, price, el) {
+  document.querySelectorAll('[name="logo-service"]').forEach(r => { r.closest('.radio-opt').classList.remove('selected'); r.checked = false; });
+  el.classList.add('selected'); el.querySelector('input').checked = true;
+  logoState.logoService = type; logoState.logoPrice = price;
+  document.getElementById('logo-type-block').style.display = type === 'new' ? 'block' : 'none';
+  calcLogoTotal();
+}
+
+function onLogoStyleType(el) {
+  document.querySelectorAll('.logo-stype-opt').forEach(o => { o.style.borderColor='#E8E8E8'; o.style.background=''; });
+  el.style.borderColor='#5A5F0A'; el.style.background='#FEF7ED';
+  calcLogoTotal();
+}
+
+function onAvatarStandalone(type, price, el, label) {
+  document.querySelectorAll('[name="avatar-standalone"]').forEach(r => { r.closest('.radio-opt').classList.remove('selected'); r.checked = false; });
+  el.classList.add('selected'); el.querySelector('input').checked = true;
+  logoState.avatarService = type; logoState.avatarPrice = price;
+  const lb = document.getElementById('avatar-logo-type-block');
+  if(lb) lb.style.display = type === 'new-logo' ? 'block' : 'none';
+  calcLogoTotal();
+}
+
+function onAvatarLogoType(el) {
+  document.querySelectorAll('.avatar-ltype-opt').forEach(o => { o.style.borderColor='#E8E8E8'; o.style.background=''; });
+  el.style.borderColor='#5A5F0A'; el.style.background='#FEF7ED';
+}
+
+function calcLogoTotal() {
+  let base = 0;
+  if(logoState.needs.has('logo')) base += logoState.logoPrice;
+  if(logoState.needs.has('avatar')) base += logoState.avatarPrice;
+  const urgent = document.getElementById('logo-urgent') && document.getElementById('logo-urgent').checked;
+  let total = urgent ? Math.round(base * 1.3) : base;
+  const ul = document.getElementById('logo-urgent-label');
+  if(ul) ul.textContent = urgent ? '+30%' : '';
+  // bottom bar
+  const show = logoState.needs.size > 0;
+  document.getElementById('bottom-bar').style.display = show ? 'flex' : 'none';
+  const bt = document.getElementById('bar-total-val');
+  if(bt) bt.textContent = (total > 0 ? 'от ' : '') + total.toLocaleString('ru') + ' ₽';
+  const bd = document.getElementById('bar-discount-txt');
+  if(bd) bd.textContent = urgent ? 'срочно +30%' : '';
+  const lines = document.getElementById('logo-summary-lines');
+  if(!lines) return;
+  lines.innerHTML = '';
+  const add = (label, val) => { lines.innerHTML += `<div style="display:flex;justify-content:space-between;padding:6px 0;border-bottom:1px solid #f0ede4;"><div style="font-size:13px;color:#232627;">${label}</div><div style="font-size:13px;font-weight:500;color:#5A5F0A;">${val}</div></div>`; };
+  if(logoState.needs.has('logo')) {
+    const t = logoState.logoService==='new' ? 'Новый логотип' : 'Адаптация логотипа';
+    add(t, (logoState.logoService==='new'?'от ':'от ')+logoState.logoPrice.toLocaleString('ru')+' ₽');
+  }
+  if(logoState.needs.has('avatar') && logoState.avatarPrice > 0) {
+    add('Аватарка', (logoState.avatarPrice===1000?'от ':'')+logoState.avatarPrice.toLocaleString('ru')+' ₽');
+  }
+  if(urgent) add('Срочность', '+30%');
+  lines.innerHTML += `<div style="display:flex;justify-content:space-between;padding:12px 0 4px;margin-top:4px;"><div style="font-family:'ActayWide',sans-serif;font-size:12px;font-weight:700;letter-spacing:0.05em;text-transform:uppercase;">Итого</div><div style="font-family:'ActayWide',sans-serif;font-size:18px;font-weight:700;color:#232627;">${total.toLocaleString('ru')} ₽</div></div>`;
+}
+
+async function sendLogoOrder() {
+  const name = document.getElementById('logo-name').value.trim();
+  const contact = document.getElementById('logo-contact').value.trim();
+  if(!name||!contact){alert('Укажите имя и контакт');return;}
+  const urgent = document.getElementById('logo-urgent').checked;
+  let base = 0;
+  if(logoState.needs.has('logo')) base += logoState.logoPrice;
+  if(logoState.needs.has('avatar')) base += logoState.avatarPrice;
+  const total = urgent ? Math.round(base*1.3) : base;
+  let msg = `📋 *Новая заявка · Логотип и аватарка*\n\n`;
+  msg += `👤 *Имя:* ${name}\n📱 *Контакт:* ${contact}\n\n📦 *Состав:*\n`;
+  if(logoState.needs.has('logo')) msg += `· ${logoState.logoService==='new'?'Новый логотип':'Адаптация логотипа'} — от ${logoState.logoPrice.toLocaleString('ru')} ₽\n`;
+  if(logoState.needs.has('avatar')) msg += `· Аватарка — ${logoState.avatarPrice>0?'от '+logoState.avatarPrice.toLocaleString('ru')+' ₽':'бесплатно (логотип)'}\n`;
+  if(urgent) msg += `\n⚡ Срочно: +30%`;
+  msg += `\n\n💰 *Итого: от ${total.toLocaleString('ru')} ₽*`;
+  const comment = document.getElementById('logo-comment').value.trim();
+  if(comment) msg += `\n\n💬 *Комментарий:* ${comment}`;
+  try { await fetch(`https://api.telegram.org/bot${BOT_TOKEN}/sendMessage`,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({chat_id:CHAT_ID,text:msg,parse_mode:'Markdown'})}); } catch(e){}
+  // показать успех
+  document.getElementById('screen-logo').innerHTML = `<div class="success-block"><div class="success-icon">✦</div><div class="success-h">Заявка отправлена</div><p class="success-p">Я получила ваш запрос и свяжусь с вами в ближайшее время.</p><p style="margin-top:16px;font-size:12px;color:#ADAF8A;">@tatarka_visual</p><button class="btn-next" style="margin-top:24px;" onclick="openService('main')">← На главную</button></div>`;
+  window.scrollTo(0,0);
+}
+
+
+// ---- SCREEN NAV ----
+// ---- CHESS ----
+function buildChess(id, dark, light, size) {
+  const el = document.getElementById(id);
+  if(!el) return;
+  el.innerHTML = '';
+  const count = Math.ceil(420 / size);
+  for(let i=0;i<count;i++){
+    const c=document.createElement('div');
+    c.style.cssText=`width:${size}px;height:${size}px;flex-shrink:0;background:${i%2===0?dark:light};`;
+    el.appendChild(c);
+  }
+}
+function buildServiceChess(prefix) {
+  buildChess(prefix+'1','#ADAF8A','#232627',12);
+  buildChess(prefix+'2','#ADAF8A','#232627',12);
+}
+// Главная шахматка
+buildChess('chess-main-top','#ADAF8A','#232627',18);
+buildChess('chess-main-bot','#ADAF8A','#232627',18);
+
+const chessMap = { social:'chess-s', logo:'chess-l', materials:'chess-m', web:'chess-w', auto:'chess-a', retainer:'chess-r', custom:'chess-c' };
+
+function openService(id) {
+  document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
+  document.getElementById('screen-'+(id==='main'?'main':id)).classList.add('active');
+  const back = document.getElementById('hdr-back');
+  back.style.display = id === 'main' ? 'none' : 'flex';
+  if(id === 'main' || id === 'custom') {
+    document.getElementById('bottom-bar').style.display = 'none';
+  }
+  if(id === 'social') resetSocial();
+  if(id !== 'main' && chessMap[id]) setTimeout(()=>buildServiceChess(chessMap[id]), 50);
+  window.scrollTo(0,0);
+}
+
+function goBack() {
+  const active = document.querySelector('.screen.active');
+  if(active && active.id !== 'screen-main') openService('main');
+}
+
+// ---- STATE ----
+const state = { platforms: new Set(), items: {}, counters: {}, radios: {} };
+
+function resetSocial() {
+  state.platforms.clear();
+  state.items = {}; state.counters = {}; state.radios = {};
+  document.querySelectorAll('.plat-card').forEach(c => c.classList.remove('selected'));
+  document.getElementById('btn-to-2').disabled = true;
+  goStep(1);
+}
+
+// ---- STEP NAV ----
+function goStep(n) {
+  document.querySelectorAll('.step-screen').forEach(s => { s.style.display='none'; s.classList.remove('active'); });
+  const el = document.getElementById('step-'+n) || document.getElementById('step-success');
+  if(el) { el.style.display='block'; el.classList.add('active'); }
+
+  for(let i=1;i<=3;i++){
+    const num=document.getElementById('snum-'+i);
+    const lbl=document.getElementById('slbl-'+i);
+    if(!num) continue;
+    num.className='step-num'+(i<n?' done':i==n?' active':'');
+    lbl.className='step-label'+(i==n?' active':'');
+  }
+
+  if(n===2) buildComposition();
+  if(n===3) buildSummary();
+
+  document.getElementById('bottom-bar').style.display = (n===2) ? 'flex' : 'none';
+  window.scrollTo(0,0);
+}
+
+// ---- PLATFORM ----
+function togglePlat(card) {
+  const p = card.dataset.plat;
+  if(state.platforms.has(p)) {
+    state.platforms.delete(p);
+    card.classList.remove('selected');
+    Object.keys(state.items).forEach(k => { if(k.startsWith(p+'-')) delete state.items[k]; });
+    Object.keys(state.counters).forEach(k => { if(k.startsWith(p+'-')) delete state.counters[k]; });
+    Object.keys(state.radios).forEach(k => { if(k.startsWith(p+'-')) delete state.radios[k]; });
+  } else {
+    state.platforms.add(p);
+    card.classList.add('selected');
+  }
+  document.getElementById('btn-to-2').disabled = state.platforms.size === 0;
+}
+
+// ---- PLATFORM CONFIGS ----
+const PLAT_CONFIGS = {
+  tg: { name:'Telegram', sections:[
+    { id:'tg-base', title:'Фирменный стиль', num:'// 01', items:[
+      { id:'tg-style', label:'Фирменный стиль', type:'radio', name:'tg-style', options:[
+        { value:'none', label:'Уже есть готовый', add:0 },
+        { value:'partial', label:'Есть частично — доработаем', add:1000 },
+        { value:'new', label:'Создаём с нуля', add:2000 },
+      ]},
+      { id:'tg-avatar', label:'Аватарка', type:'avatar-select', name:'tg-avatar' },
+    ]},
+    { id:'tg-posts', title:'Обложки публикаций', num:'// 02', items:[
+      { id:'tg-covers', label:'Обложки к постам по рубрикам', type:'counter', unitPrice:800, desc:'800 ₽/шт · от 10 шт скидка 10%', discountFn:(n)=>n>=10?Math.round(n*800*0.9):n*800 },
+      { id:'tg-bg', label:'Фоны для публикаций', type:'counter', unitPrice:800, desc:'800 ₽/шт' },
+      { id:'tg-pub-style', label:'Фирстиль для публикаций (сторис в TG)', type:'toggle', price:3000 },
+      { id:'tg-videoinstr', label:'Видеоинструкция по самостоятельному оформлению', type:'toggle', price:3000 },
+    ]},
+    { id:'tg-stickers', title:'Стикеры и эмодзи', num:'// 03', items:[
+      { id:'tg-stickers', label:'Стикерпак', type:'radio', name:'tg-stickers', options:[
+        { value:'none', label:'Не нужен', add:0 },
+        { value:'s10', label:'Пакет 10 стикеров', add:2000 },
+        { value:'s20', label:'Пакет 20 стикеров', add:3500 },
+      ]},
+      { id:'tg-emoji', label:'Кастомные эмодзи', type:'radio', name:'tg-emoji', options:[
+        { value:'none', label:'Не нужны', add:0 },
+        { value:'e10', label:'Пакет 10 эмодзи', add:2000 },
+        { value:'e20', label:'Пакет 20 эмодзи', add:3500 },
+      ]},
+    ]},
+  ]},
+  max: { name:'MAX', sections:[
+    { id:'max-base', title:'Фирменный стиль', num:'// 01', items:[
+      { id:'max-style', label:'Фирменный стиль', type:'radio', name:'max-style', options:[
+        { value:'none', label:'Уже есть готовый', add:0 },
+        { value:'partial', label:'Есть частично — доработаем', add:1000 },
+        { value:'new', label:'Создаём с нуля', add:2000 },
+      ]},
+      { id:'max-avatar', label:'Аватарка', type:'avatar-select', name:'max-avatar' },
+    ]},
+    { id:'max-posts', title:'Контент', num:'// 02', items:[
+      { id:'max-covers', label:'Обложки к постам', type:'counter', unitPrice:800, desc:'800 ₽/шт · от 10 шт скидка 10%', discountFn:(n)=>n>=10?Math.round(n*800*0.9):n*800 },
+      { id:'max-stickers', label:'Стикерпак', type:'radio', name:'max-stickers', options:[
+        { value:'none', label:'Не нужен', add:0 },
+        { value:'s10', label:'Пакет 10 стикеров', add:2000 },
+        { value:'s20', label:'Пакет 20 стикеров', add:3500 },
+      ]},
+    ]},
+  ]},
+  ig: { name:'Instagram', sections:[
+    { id:'ig-base', title:'Фирменный стиль', num:'// 01', items:[
+      { id:'ig-style', label:'Фирменный стиль', type:'radio', name:'ig-style', options:[
+        { value:'none', label:'Уже есть готовый', add:0 },
+        { value:'partial', label:'Есть частично — доработаем', add:1000 },
+        { value:'new', label:'Создаём с нуля', add:2000 },
+      ]},
+      { id:'ig-avatar', label:'Аватарка', type:'avatar-select', name:'ig-avatar' },
+      { id:'ig-photo', label:'Визуальные материалы для ленты', type:'radio', name:'ig-photo', options:[
+        { value:'has', label:'Есть фотоархив — предоставлю материалы', add:0 },
+        { value:'ai-product9', label:'ИИ-фотосессия продукта · 9 постов', add:7000 },
+        { value:'ai-product12', label:'ИИ-фотосессия продукта · 12 постов', add:11000 },
+        { value:'ai-product15', label:'ИИ-фотосессия продукта · 15 постов', add:13000 },
+        { value:'ai-product18', label:'ИИ-фотосессия продукта · 18 постов', add:15000 },
+        { value:'ai-creative9', label:'Визуальный контент с нуля · 9 постов', add:7000 },
+        { value:'ai-creative12', label:'Визуальный контент с нуля · 12 постов', add:11000 },
+        { value:'ai-creative15', label:'Визуальный контент с нуля · 15 постов', add:13000 },
+        { value:'ai-creative18', label:'Визуальный контент с нуля · 18 постов', add:15000 },
+      ]},
+    ]},
+    { id:'ig-highlights', title:'Хайлайтс', num:'// 02', items:[
+      { id:'ig-hl', label:'Обложки хайлайтс', type:'counter', unitPrice:300, desc:'300 ₽/шт' },
+    ]},
+    { id:'ig-posts', title:'Посты', num:'// 03', items:[
+      { id:'ig-post-tpl', label:'Дизайн постов', type:'counter', unitPrice:800, desc:'800 ₽/шт' },
+      { id:'ig-carousel', label:'Дизайн каруселей', type:'counter', unitPrice:800, desc:'800 ₽/шт' },
+      { id:'ig-reels', label:'Обложки Reels', type:'counter', unitPrice:800, desc:'800 ₽/шт' },
+    ]},
+    { id:'ig-stories', title:'Сторис', num:'// 04', items:[
+      { id:'ig-stories-tpl', label:'Шаблоны сторис', type:'counter', unitPrice:800, desc:'800 ₽/шт' },
+      { id:'ig-stories-brand', label:'Фирменный стиль сторис, оформленный в брендбук', type:'toggle', price:3000 },
+      { id:'ig-videoinstr', label:'Видеоинструкция по самостоятельному оформлению', type:'toggle', price:3000 },
+    ]},
+  ]},
+  vk: { name:'ВКонтакте', sections:[
+    { id:'vk-base', title:'Фирменный стиль', num:'// 01', items:[
+      { id:'vk-style', label:'Фирменный стиль', type:'radio', name:'vk-style', options:[
+        { value:'none', label:'Уже есть готовый', add:0 },
+        { value:'partial', label:'Есть частично — доработаем', add:1000 },
+        { value:'new', label:'Создаём с нуля', add:2000 },
+      ]},
+      { id:'vk-avatar', label:'Аватарка', type:'avatar-select', name:'vk-avatar' },
+    ]},
+    { id:'vk-design', title:'Оформление группы', num:'// 02', items:[
+      { id:'vk-cover', label:'Шапка группы (десктоп + мобильная)', type:'toggle', price:3000, desc:'1590×530 + живое фото' },
+      { id:'vk-menu', label:'Меню сообщества', type:'toggle', price:2000, desc:'376×256 · до 7 ссылок' },
+    ]},
+    { id:'vk-content', title:'Контент', num:'// 03', items:[
+      { id:'vk-posts', label:'Дизайн постов', type:'counter', unitPrice:800, desc:'800 ₽/шт · 800×800' },
+      { id:'vk-goods', label:'Карточки товаров / услуг', type:'counter', unitPrice:600, desc:'600 ₽/шт · 400×400' },
+      { id:'vk-albums', label:'Обложки альбомов', type:'counter', unitPrice:800, desc:'800 ₽/шт · 1200×800' },
+      { id:'vk-articles', label:'Обложки статей', type:'counter', unitPrice:800, desc:'800 ₽/шт · 510×286' },
+    ]},
+  ]},
+  wa: { name:'WhatsApp Business', sections:[
+    { id:'wa-base', title:'Фирменный стиль', num:'// 01', items:[
+      { id:'wa-style', label:'Фирменный стиль', type:'radio', name:'wa-style', options:[
+        { value:'none', label:'Уже есть готовый', add:0 },
+        { value:'partial', label:'Есть частично — доработаем', add:1000 },
+        { value:'new', label:'Создаём с нуля', add:2000 },
+      ]},
+      { id:'wa-avatar', label:'Аватарка', type:'avatar-select', name:'wa-avatar' },
+    ]},
+    { id:'wa-catalog', title:'Каталог / меню', num:'// 02', items:[
+      { id:'wa-catalog-covers', label:'Обложки к каталогу / меню', type:'counter', unitPrice:800, desc:'800 ₽/шт' },
+    ]},
+    { id:'wa-posts', title:'Посты и канал', num:'// 03', items:[
+      { id:'wa-post-tpl', label:'Дизайн постов', type:'counter', unitPrice:800, desc:'800 ₽/шт' },
+    ]},
+    { id:'wa-statuses', title:'Статусы', num:'// 04', items:[
+      { id:'wa-status-tpl', label:'Шаблоны статусов', type:'counter', unitPrice:800, desc:'800 ₽/шт' },
+      { id:'wa-status-brand', label:'Фирменный стиль статусов, оформленный в брендбук', type:'toggle', price:3000 },
+      { id:'wa-status-video', label:'Видеоинструкция по самостоятельному оформлению', type:'toggle', price:3000 },
+    ]},
+  ]},
+  other: { name:'Другое', sections:[
+    { id:'other-base', title:'Опишите задачу', num:'// 01', items:[
+      { id:'other-freeform', label:'Опишите платформу и задачу в комментарии на следующем шаге — я свяжусь с вами и озвучу стоимость работ', type:'info' },
+    ]},
+  ]},
+};
+
+// ---- BUILD COMPOSITION ----
+function buildComposition() {
+  const area = document.getElementById('composition-area');
+  area.innerHTML = '';
+  state.items = {}; state.counters = {}; state.radios = {};
+
+  state.platforms.forEach(platId => {
+    const config = PLAT_CONFIGS[platId];
+    if(!config) return;
+    const ph = document.createElement('div');
+    ph.style.cssText = 'margin:20px 0 8px;';
+    ph.innerHTML = `<div class="section-label">${config.name}</div>`;
+    area.appendChild(ph);
+
+    config.sections.forEach((sec, si) => {
+      const acc = document.createElement('div');
+      acc.className = 'acc-block';
+      if(si===0) acc.classList.add('acc-open');
+      acc.innerHTML = `
+        <div class="acc-bar"></div>
+        <div class="acc-header${si===0?' open':''}" onclick="toggleAcc(this)">
+          <div class="acc-left"><span class="acc-num">${sec.num}</span><span class="acc-title">${sec.title}</span></div>
+          <div class="acc-right"><span class="acc-subtotal"></span><span class="acc-arrow${si===0?' open':''}">→</span></div>
+        </div>
+        <div class="acc-body${si===0?' open':''}">
+          ${buildSectionItems(platId, sec)}
+        </div>`;
+      area.appendChild(acc);
+    });
+  });
+  // Блок GPT-агента — всегда виден на шаге 2
+  const gptHeader = document.createElement('div');
+  gptHeader.style.cssText = 'margin:24px 0 8px;';
+  gptHeader.innerHTML = '<div class="section-label">// дополнительно</div>';
+  area.appendChild(gptHeader);
+
+  const gptBlock = document.createElement('div');
+  gptBlock.className = 'acc-block';
+  gptBlock.innerHTML = `
+    <div class="acc-header open" onclick="toggleAcc(this)">
+      <div class="acc-left"><span class="acc-num">// ИИ</span><span class="acc-title">GPT-агент по айдентике</span></div>
+      <div class="acc-right"><span class="acc-subtotal" id="gpt-subtotal"></span><span class="acc-arrow open">→</span></div>
+    </div>
+    <div class="acc-body open">
+      <div class="toggle-row">
+        <div class="toggle-left">
+          <div class="toggle-name">GPT-агент по айдентике бренда</div>
+          <div class="toggle-desc">Обучим ИИ вашему фирменному стилю — он будет генерировать тексты, подписи и идеи в голосе вашего бренда</div>
+        </div>
+        <div class="toggle-right">
+          <div class="toggle-price">+8 000 ₽</div>
+          <label class="tv-toggle"><input type="checkbox" data-id="extra-gpt" data-price="8000" data-label="GPT-агент по айдентике бренда" onchange="onToggle(this)"><span class="tv-slider"></span></label>
+        </div>
+      </div>
+    </div>`;
+  area.appendChild(gptBlock);
+
+  calcTotal();
+}
+
+function buildSectionItems(platId, sec) {
+  return sec.items.map(item => {
+    if(item.type==='toggle') return `
+      <div class="toggle-row">
+        <div class="toggle-left"><div class="toggle-name">${item.label}</div>${item.desc?`<div class="toggle-desc">${item.desc}</div>`:''}</div>
+        <div class="toggle-right">
+          <div class="toggle-price">+${item.price.toLocaleString('ru')} ₽</div>
+          <label class="tv-toggle"><input type="checkbox" data-id="${platId}-${item.id}" data-price="${item.price}" data-label="${item.label}" onchange="onToggle(this)"><span class="tv-slider"></span></label>
+        </div>
+      </div>`;
+
+    if(item.type==='counter') return `
+      <div class="toggle-row">
+        <div class="toggle-left"><div class="toggle-name">${item.label}</div>${item.desc?`<div class="toggle-desc">${item.desc}</div>`:''}</div>
+        <div class="toggle-right">
+          <div class="toggle-price" id="cprice-${platId}-${item.id}">— ₽</div>
+          <div class="counter">
+            <button class="counter-btn" onclick="changeCounter('${platId}-${item.id}',-1,${item.unitPrice},${!!item.discountFn},'${item.label}')">−</button>
+            <div class="counter-val" id="cval-${platId}-${item.id}">0</div>
+            <button class="counter-btn" onclick="changeCounter('${platId}-${item.id}',1,${item.unitPrice},${!!item.discountFn},'${item.label}')">+</button>
+          </div>
+        </div>
+      </div>`;
+
+    if(item.type==='avatar-select') return `
+      <div class="toggle-row" style="flex-direction:column;align-items:flex-start;gap:10px;">
+        <div class="toggle-name">Аватарка</div>
+        <div class="radio-group" style="width:100%;" id="avatar-group-${platId}">
+          <div class="radio-opt selected" onclick="onAvatarSelect('${platId}','logo',0,this,'Аватарка: используем ваш логотип')">
+            <input type="radio" name="${platId}-avatar" value="logo" checked>
+            <div class="radio-opt-label">Используем ваш логотип</div>
+            <div class="radio-opt-price" style="color:#888;">бесплатно</div>
+          </div>
+          <div class="radio-opt" onclick="onAvatarSelect('${platId}','new-logo',8000,this,'Аватарка: новый логотип')">
+            <input type="radio" name="${platId}-avatar" value="new-logo">
+            <div class="radio-opt-label">Делаем новый логотип</div>
+            <div class="radio-opt-price">+8 000 ₽</div>
+          </div>
+          <div id="logo-type-${platId}" style="display:none;padding:8px 0 4px 16px;border-left:2px solid #ADAF8A;margin-left:8px;">
+            <div style="font-size:11px;color:#888;margin-bottom:8px;">Выберите тип логотипа:</div>
+            <div style="display:grid;grid-template-columns:1fr 1fr;gap:6px;">
+              <div class="logo-type-opt" data-plat="${platId}" data-val="letter" onclick="onLogoType(this)" style="padding:8px 10px;border:1px solid #E8E8E8;cursor:pointer;font-size:12px;">Буквенный</div>
+              <div class="logo-type-opt" data-plat="${platId}" data-val="graphic" onclick="onLogoType(this)" style="padding:8px 10px;border:1px solid #E8E8E8;cursor:pointer;font-size:12px;">Графический элемент</div>
+              <div class="logo-type-opt" data-plat="${platId}" data-val="combined" onclick="onLogoType(this)" style="padding:8px 10px;border:1px solid #E8E8E8;cursor:pointer;font-size:12px;">Комбинированный</div>
+              <div class="logo-type-opt" data-plat="${platId}" data-val="calligraphy" onclick="onLogoType(this)" style="padding:8px 10px;border:1px solid #E8E8E8;cursor:pointer;font-size:12px;">Каллиграфия</div>
+            </div>
+          </div>
+          <div class="radio-opt" onclick="onAvatarSelect('${platId}','adapt',1000,this,'Аватарка: адаптируем имеющийся логотип')">
+            <input type="radio" name="${platId}-avatar" value="adapt">
+            <div class="radio-opt-label">Адаптируем имеющийся логотип</div>
+            <div class="radio-opt-price">от 1 000 ₽</div>
+          </div>
+          <div class="radio-opt" onclick="onAvatarSelect('${platId}','neuro',5000,this,'Аватарка: нейроаватарка')">
+            <input type="radio" name="${platId}-avatar" value="neuro">
+            <div class="radio-opt-label">Нейроаватарка<div style="font-size:11px;color:#888;margin-top:3px;">Образ в стиле бренда, без чётких черт лица. 100% предоплата.</div></div>
+            <div class="radio-opt-price">5 000 ₽</div>
+          </div>
+          <div class="radio-opt" onclick="onAvatarSelect('${platId}','creative',2000,this,'Аватарка: новая графика / креатив')">
+            <input type="radio" name="${platId}-avatar" value="creative">
+            <div class="radio-opt-label">Новая графика / креатив</div>
+            <div class="radio-opt-price">от 2 000 ₽</div>
+          </div>
+        </div>
+      </div>`;
+
+    if(item.type==='radio') {
+      let opts = '';
+      if(item.name==='ig-photo') {
+        const groups = [
+          { label:null, values:['has'] },
+          { label:'ИИ-фотосессия продукта', hint:'Есть реальный товар, но нет качественных фото — создадим реалистичные снимки с ИИ', values:['ai-product9','ai-product12','ai-product15','ai-product18'] },
+          { label:'Визуальный контент с нуля', hint:'Нет товара или нужен авторский визуал — создаём образы, сцены, атмосферу через ИИ', values:['ai-creative9','ai-creative12','ai-creative15','ai-creative18'] },
+        ];
+        const cLabels = {'9':'9 постов','12':'12 постов','15':'15 постов','18':'18 постов'};
+        groups.forEach(g => {
+          if(g.label) { opts+=`<div style="margin:10px 0 4px;font-size:11px;font-weight:500;color:#232627;">${g.label}</div><div style="font-size:11px;color:#888;margin-bottom:6px;line-height:1.5;">${g.hint}</div>`; }
+          g.values.forEach(val => {
+            const o = item.options.find(x=>x.value===val); if(!o) return;
+            const num = val.match(/\d+/)?.[0];
+            const dispLabel = g.label ? (cLabels[num]||o.label) : o.label;
+            opts+=`<div class="radio-opt" onclick="onRadio('${item.name}','${o.value}',${o.add},this,'${item.label}: ${dispLabel}')">
+              <input type="radio" name="${item.name}" value="${o.value}" ${o.value==='has'?'checked':''}>
+              <div class="radio-opt-label">${dispLabel}</div>
+              ${o.add?`<div class="radio-opt-price">+${o.add.toLocaleString('ru')} ₽</div>`:'<div class="radio-opt-price" style="color:#888;">бесплатно</div>'}
+            </div>`;
+          });
+        });
+      } else {
+        opts = item.options.map(o=>`
+          <div class="radio-opt" onclick="onRadio('${item.name}','${o.value}',${o.add},this,'${item.label}: ${o.label}')">
+            <input type="radio" name="${item.name}" value="${o.value}" ${o.value==='none'||o.value==='has'?'checked':''}>
+            <div class="radio-opt-label">${o.label}</div>
+            ${o.add?`<div class="radio-opt-price">+${o.add.toLocaleString('ru')} ₽</div>`:''}
+          </div>`).join('');
+      }
+      if(item.options[0].add===0) state.radios[item.name]={value:item.options[0].value,add:0,label:item.label+': '+item.options[0].label};
+      return `<div class="toggle-row" style="flex-direction:column;align-items:flex-start;gap:8px;"><div class="toggle-name">${item.label}</div><div class="radio-group" style="width:100%;">${opts}</div></div>`;
+    }
+
+    if(item.type==='info') return `<div class="toggle-row"><div class="toggle-left"><div class="toggle-desc" style="font-size:13px;color:#232627;line-height:1.6;">${item.label}</div></div></div>`;
+    return '';
+  }).join('');
+}
+
+function toggleAcc(header) {
+  const arrow = header.querySelector('.acc-arrow');
+  const body = header.nextElementSibling;
+  const block = header.parentElement;
+  const isOpen = body.classList.contains('open');
+  body.classList.toggle('open', !isOpen);
+  arrow.classList.toggle('open', !isOpen);
+  header.classList.toggle('open', !isOpen);
+  block.classList.toggle('acc-open', !isOpen);
+}
+
+// ---- CONTROLS ----
+function onToggle(el) {
+  const id=el.dataset.id, price=parseInt(el.dataset.price), label=el.dataset.label;
+  if(el.checked) state.items[id]={price,label};
+  else delete state.items[id];
+  calcTotal();
+}
+
+function changeCounter(id,delta,unitPrice,hasDiscount,label) {
+  const cur=state.counters[id]||0;
+  const next=Math.max(0,cur+delta);
+  state.counters[id]=next;
+  document.getElementById('cval-'+id).textContent=next;
+  let price=0;
+  if(next>0){
+    price=hasDiscount&&next>=10?Math.round(next*unitPrice*0.9):next*unitPrice;
+    state.items[id]={price,label:`${label} × ${next}`};
+  } else delete state.items[id];
+  const pe=document.getElementById('cprice-'+id);
+  if(pe) pe.textContent=next>0?price.toLocaleString('ru')+' ₽':'— ₽';
+  calcTotal();
+}
+
+function onRadio(name,value,add,el,label) {
+  document.querySelectorAll(`[name="${name}"]`).forEach(r=>{r.closest('.radio-opt').classList.remove('selected');r.checked=false;});
+  el.classList.add('selected');
+  el.querySelector('input').checked=true;
+  state.radios[name]={value,add,label};
+  calcTotal();
+}
+
+function onAvatarSelect(platId,value,add,el,label) {
+  const group=document.getElementById('avatar-group-'+platId);
+  group.querySelectorAll('.radio-opt').forEach(r=>{r.classList.remove('selected');r.querySelector('input').checked=false;});
+  el.classList.add('selected');
+  el.querySelector('input').checked=true;
+  const lb=document.getElementById('logo-type-'+platId);
+  if(lb) lb.style.display=value==='new-logo'?'block':'none';
+  state.radios[platId+'-avatar']={value,add,label};
+  calcTotal();
+}
+
+function onLogoType(el) {
+  const platId=el.dataset.plat;
+  document.querySelectorAll(`.logo-type-opt[data-plat="${platId}"]`).forEach(o=>{o.style.borderColor='#E8E8E8';o.style.background='';});
+  el.style.borderColor='#5A5F0A';el.style.background='#FEF7ED';
+  const n={letter:'Буквенный',graphic:'Графический элемент',combined:'Комбинированный',calligraphy:'Каллиграфия'};
+  state.radios[platId+'-avatar'].label='Аватарка: новый логотип — '+n[el.dataset.val];
+}
+
+// ---- CALC ----
+function calcTotal() {
+  let base=0;
+  Object.values(state.items).forEach(i=>base+=i.price);
+  Object.values(state.radios).forEach(r=>base+=r.add||0);
+  const platCount=state.platforms.size;
+  let discountPct=0,discountLabel='';
+  if(platCount>=3){discountPct=15;discountLabel='−15% за 3+ платформы';}
+  else if(platCount===2){discountPct=10;discountLabel='−10% за 2 платформы';}
+  const urgent=document.getElementById('urgent-toggle')&&document.getElementById('urgent-toggle').checked;
+  let total=Math.round(base*(1-discountPct/100));
+  if(urgent) total=Math.round(total*1.3);
+  const ul=document.getElementById('urgent-price-label');
+  if(ul) ul.textContent=urgent?'+30%':'';
+  const bt=document.getElementById('bar-total-val');
+  if(bt) bt.textContent=total.toLocaleString('ru')+' ₽';
+  const bd=document.getElementById('bar-discount-txt');
+  if(bd) bd.textContent=discountLabel+(urgent?(discountLabel?' · срочно +30%':'срочно +30%'):'');
+  return{base,total,discountPct,urgent};
+}
+
+// ---- SUMMARY ----
+function buildSummary() {
+  const{base,total,discountPct,urgent}=calcTotal();
+  const lines=document.getElementById('summary-lines');
+  lines.innerHTML='';
+  const add=(label,val,muted)=>{
+    lines.innerHTML+=`<div style="display:flex;justify-content:space-between;padding:6px 0;border-bottom:1px solid #f0ede4;">
+      <div style="font-size:${muted?'12':'13'}px;color:${muted?'#888':'#232627'};">${label}</div>
+      <div style="font-size:13px;font-weight:500;color:${muted?'#888':'#5A5F0A'};">${val}</div>
+    </div>`;
+  };
+  const platNames=[...state.platforms].map(p=>PLAT_CONFIGS[p].name).join(', ');
+  add('Платформы',platNames,true);
+  Object.values(state.items).forEach(i=>add(i.label,i.price.toLocaleString('ru')+' ₽',false));
+  Object.values(state.radios).forEach(r=>{if(r.add)add(r.label,'+'+r.add.toLocaleString('ru')+' ₽',false);});
+  if(discountPct) add(`Скидка (${discountPct}%)`,'−'+Math.round(base*discountPct/100).toLocaleString('ru')+' ₽',false);
+  if(urgent) add('Срочность','+30%',false);
+  lines.innerHTML+=`<div style="display:flex;justify-content:space-between;padding:12px 0 4px;margin-top:4px;">
+    <div style="font-family:'ActayWide',sans-serif;font-size:12px;font-weight:700;letter-spacing:0.05em;text-transform:uppercase;">Итого</div>
+    <div style="font-family:'ActayWide',sans-serif;font-size:18px;font-weight:700;color:#232627;">${total.toLocaleString('ru')} ₽</div>
+  </div>`;
+}
+
+// ---- SEND ----
+async function sendOrder() {
+  const name=document.getElementById('c-name').value.trim();
+  const contact=document.getElementById('c-contact').value.trim();
+  if(!name||!contact){alert('Укажите имя и контакт для связи');return;}
+  const{total,discountPct,urgent}=calcTotal();
+  const platNames=[...state.platforms].map(p=>PLAT_CONFIGS[p].name).join(', ');
+  let msg=`📋 *Новая заявка · Визуальная упаковка соцсетей*\n\n`;
+  msg+=`👤 *Имя:* ${name}\n📱 *Контакт:* ${contact}\n`;
+  const link=document.getElementById('c-link').value.trim();
+  if(link) msg+=`🔗 *Аккаунт:* ${link}\n`;
+  msg+=`\n🎯 *Платформы:* ${platNames}\n\n📦 *Состав заказа:*\n`;
+  Object.values(state.items).forEach(i=>{msg+=`· ${i.label} — ${i.price.toLocaleString('ru')} ₽\n`;});
+  Object.values(state.radios).forEach(r=>{if(r.add)msg+=`· ${r.label} — +${r.add.toLocaleString('ru')} ₽\n`;});
+  if(discountPct) msg+=`\n🎁 Скидка: −${discountPct}%`;
+  if(urgent) msg+=`\n⚡ Срочно: +30%`;
+  msg+=`\n\n💰 *Итого: ${total.toLocaleString('ru')} ₽*`;
+  const comment=document.getElementById('c-comment').value.trim();
+  if(comment) msg+=`\n\n💬 *Комментарий:* ${comment}`;
+  try {
+    await fetch(`https://api.telegram.org/bot${BOT_TOKEN}/sendMessage`,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({chat_id:CHAT_ID,text:msg,parse_mode:'Markdown'})});
+  } catch(e){}
+  document.querySelectorAll('.step-screen').forEach(s=>{s.style.display='none';});
+  document.getElementById('step-success').style.display='block';
+  document.getElementById('bottom-bar').style.display='none';
+  window.scrollTo(0,0);
+}
+</script>
+</body>
+</html>
